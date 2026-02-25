@@ -80,6 +80,7 @@ defineProps<{
     font-family: $font-family-bebas;
     text-transform: uppercase;
     margin-bottom: 24px;
+    line-height: 160%;
 
     @include bp($point_2) {
       font-size: 35px;

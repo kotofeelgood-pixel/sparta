@@ -85,7 +85,7 @@ const breakpoints = {
   position: relative;
 
   @include bp($point_2) {
-    padding: 55px 0;
+    padding: 0 0 55px 0;
   }
 
   &__container {

@@ -19,6 +19,8 @@ const isNotMT = computed(() => {
   switch (route.path) {
     case '/repair':
       return true
+    case '/cart':
+      return true
     default:
       return false
   }

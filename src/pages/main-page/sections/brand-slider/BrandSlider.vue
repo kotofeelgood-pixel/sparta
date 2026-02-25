@@ -92,6 +92,10 @@ const breakpoints = {
     transform: translate(-50%, -50%);
     width: 105%;
     z-index: 10;
+
+    @include bp($point_2) {
+      display: none;
+    }
   }
 
   &__nav-button {
