@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import LoadingIcon from '../icons/LoadingIcon.vue';
-import { computed, type Component } from 'vue';
+import LoadingIcon from '../icons/LoadingIcon.vue'
+import { computed, type Component } from 'vue'
 
 export interface ButtonComponentModel {
   text: string
@@ -11,27 +11,26 @@ export interface ButtonComponentModel {
   customClass?: string
 }
 
-const { text, size, variant, loading, icon, customClass } = defineProps<ButtonComponentModel>();
+const { text, size, variant, loading, icon, customClass } = defineProps<ButtonComponentModel>()
 
 const buttonClasses = computed(() => {
-  const classes = ['button'];
-  classes.push(`button--${variant}`);
-  classes.push(`button--${size}`);
+  const classes = ['button']
+  classes.push(`button--${variant}`)
+  classes.push(`button--${size}`)
   if (customClass) {
-    classes.push(customClass);
+    classes.push(customClass)
   }
-  return classes;
-});
-
+  return classes
+})
 </script>
 
 <template>
   <div :class="buttonClasses">
     <div class="button__loading" v-if="loading">
-      <LoadingIcon/>
+      <LoadingIcon />
     </div>
     <span class="button__text">{{ text }}</span>
-    <component :is="icon" class="button__icon" v-if="icon"/>
+    <component :is="icon" class="button__icon" v-if="icon" />
   </div>
 </template>
 
@@ -68,19 +67,20 @@ const buttonClasses = computed(() => {
 
   // Размеры
   &--small {
-    padding: 16px 24px;
+    padding: 12px 20px;
+    font-size: 14px;
   }
 
   &--medium {
-    padding: 28px 44px;
+    padding: 20px 32px;
+    font-size: 14px;
   }
 
   &--large {
-    height: 89px;
-    padding: 0 32px;
+    height: 60px;
+    padding: 0 24px;
     text-transform: uppercase;
-    font-size: $font-size-20;
-    line-height: $line-height-20;
+    font-size: 18px;
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.01em;
@@ -101,6 +101,10 @@ const buttonClasses = computed(() => {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    width: 20px;
+    height: auto;
+    flex-shrink: 0;
   }
 }
 </style>

@@ -39,24 +39,12 @@ const linkTo = to ?? `/${slug}/${id}`
   padding-bottom: 40px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 25px;
   border-radius: 10px;
   position: relative;
   height: 100%;
   text-decoration: none;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
-
-  @media (min-width: 1024px) {
-    padding: 20px;
-    padding-bottom: 40px;
-  }
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15);
-  }
+  transition: all 0.3s ease-in-out;
 
   &__image-wrapper {
     width: 100%;
@@ -76,22 +64,15 @@ const linkTo = to ?? `/${slug}/${id}`
   }
 
   &__title {
-    font-size: $font-size-20;
-    line-height: $line-height-20;
+    font-size: 20px;
     font-weight: 700;
     color: $color-gray;
     text-align: center;
-    margin-bottom: 40px;
-
-    @media (min-width: 1024px) {
-      font-size: $font-size-25;
-      line-height: $line-height-25;
-    }
+    margin-bottom: 25px;
   }
 
   &__button {
-    font-size: $font-size-18;
-    line-height: $line-height-18;
+    font-size: 18px;
     font-weight: 600;
     text-transform: uppercase;
     max-width: 147px;

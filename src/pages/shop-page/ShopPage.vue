@@ -107,7 +107,7 @@ const loadMore = () => {
 
 <template>
   <div class="shop-page">
-    <div class="shop-page__container">
+    <div class="shop-page__container container">
       <div class="shop-page__content">
         <!-- Боковая панель с категориями -->
         <aside class="shop-page__sidebar">
@@ -186,22 +186,7 @@ const loadMore = () => {
 <style scoped lang="scss">
 .shop-page {
   background-color: $color-page-bg;
-  padding-bottom: 48px;
   min-height: calc(100vh - 200px);
-
-  @include bp($point_2, min) {
-    padding-bottom: 96px;
-  }
-
-  &__container {
-    max-width: 1187px;
-    margin: 0 auto;
-    padding: 0 12px;
-
-    @include bp($point_5, min) {
-      padding: 0 16px;
-    }
-  }
 
   &__content {
     display: flex;
@@ -209,14 +194,9 @@ const loadMore = () => {
     gap: 20px;
     padding-top: 20px;
 
-    @include bp($point_4, min) {
-      gap: 24px;
-      padding-top: 24px;
-    }
-
     @include bp($point_2, min) {
       flex-direction: row;
-      gap: 32px;
+      gap: 24px;
       padding-top: 40px;
     }
   }
@@ -320,14 +300,9 @@ const loadMore = () => {
 
   &__load-button {
     text-transform: uppercase;
-    font-size: $font-size-14;
-    line-height: $line-height-14;
-    font-weight: 600;
-
-    @include bp($point_5, min) {
-      font-size: $font-size-16;
-      line-height: $line-height-16;
-    }
+    font-size: 16px;
+    line-height: 140%;
+    font-weight: 500;
   }
 }
 </style>

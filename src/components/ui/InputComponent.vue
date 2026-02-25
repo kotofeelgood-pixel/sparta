@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 export interface InputComponentModel {
   placeholder: string
@@ -11,15 +11,23 @@ export interface InputComponentModel {
   error?: boolean
 }
 
-const model = defineModel<string>('modelValue', { required: true });
-const { placeholder, type, id, name, required, size, error = false } = defineProps<InputComponentModel>();
+const model = defineModel<string>('modelValue', { required: true })
+const {
+  placeholder,
+  type,
+  id,
+  name,
+  required,
+  size,
+  error = false,
+} = defineProps<InputComponentModel>()
 
 const inputClasses = computed(() => {
-  const classes = ['input'];
-  classes.push(`input--${size}`);
-  if (error) classes.push('input--error');
-  return classes;
-});
+  const classes = ['input']
+  classes.push(`input--${size}`)
+  if (error) classes.push('input--error')
+  return classes
+})
 </script>
 
 <template>
@@ -32,7 +40,7 @@ const inputClasses = computed(() => {
       :name="name"
       :required="required"
       :class="inputClasses"
-    >
+    />
   </div>
 </template>
 
@@ -56,23 +64,23 @@ const inputClasses = computed(() => {
     box-shadow: 0 0 0 2px #e53e3e;
   }
 
-  &--small {
-    padding: 16px 24px;
-  }
+  padding: 20px 24px;
+  // &--small {
+  // }
 
-  &--medium {
-    padding: 28px 44px;
-  }
+  // &--medium {
+  //   padding: 28px 44px;
+  // }
 
   &--large {
-    height: 89px;
-    padding: 0 44px;
-    font-size: $font-size-18;
-    line-height: 1;
+    // height: 89px;
+    // padding: 0 44px;
+    font-size: 16px;
+    // line-height: 1;
 
-    @include bp($point_2) {
-      height: 77px;
-    }
+    // @include bp($point_2) {
+    //   height: 77px;
+    // }
   }
 }
 </style>

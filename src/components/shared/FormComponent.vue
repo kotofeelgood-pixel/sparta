@@ -82,19 +82,13 @@ function handleSubmit() {
 .form-component {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  gap: 16px;
 
   @include bp($point_2) {
     grid-template-columns: 1fr;
   }
 
-  &__input {
-    // input styles
-  }
-
   &__button {
-    // button styles
-
     @include bp($point_2) {
       order: 5;
     }

@@ -43,12 +43,13 @@ function toggleCheckbox() {
   align-items: flex-start;
   gap: 8px;
   cursor: pointer;
+  font-size: 16px;
 
   &__icon {
     flex-shrink: 0;
     margin-top: 2px;
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;

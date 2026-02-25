@@ -235,7 +235,7 @@ const repairs = [
 <style scoped lang="scss">
 .main-page {
   &__section {
-    margin-bottom: 96px;
+    margin-bottom: $m-sec;
 
     @include bp($point_2) {
       margin-bottom: 55px;

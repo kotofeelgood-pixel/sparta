@@ -1,16 +1,23 @@
 <script setup lang="ts">
-import AirIcon from '@/components/icons/AirIcon.vue';
-import BlockForm from '@/components/shared/BlockForm.vue';
+import AirIcon from '@/components/icons/AirIcon.vue'
+import BlockForm from '@/components/shared/BlockForm.vue'
 </script>
 
 <template>
   <div class="delivery-page">
-    <div class="delivery-page__container">
+    <div class="delivery-page__container container">
       <div class="delivery-page__card">
-        <AirIcon class="delivery-page__card-icon"/>
-        <p class="delivery-page__card-text">Мы можем отправить авиа до их областного центра за 1-3 дня</p>
+        <AirIcon class="delivery-page__card-icon" />
+        <p class="delivery-page__card-text">
+          Мы можем отправить авиа до их областного центра за 1-3 дня
+        </p>
       </div>
-      <p class="delivery-page__description">st, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatu</p>
+      <p class="delivery-page__description">
+        st, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam
+        eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad
+        minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
+        aliquid ex ea commodi consequatu
+      </p>
     </div>
     <BlockForm
       image="/images/form-one.png"
@@ -27,10 +34,7 @@ import BlockForm from '@/components/shared/BlockForm.vue';
   padding-top: 24px;
 
   &__container {
-    max-width: 1187px;
-    margin: 0 auto;
-    padding: 0 16px;
-    padding-bottom: 112px;
+    margin-bottom: $m-sec;
   }
 
   &__card {
@@ -38,7 +42,7 @@ import BlockForm from '@/components/shared/BlockForm.vue';
     align-items: center;
     border-radius: 10px;
     padding: 16px 40px;
-    gap: 32px;
+    gap: 16px;
     margin-bottom: 28px;
     background-image: url('/images/delivery-card.png');
     background-size: cover;
@@ -48,19 +52,20 @@ import BlockForm from '@/components/shared/BlockForm.vue';
 
   &__card-icon {
     flex-shrink: 0;
+    width: 30px;
+    height: 30px;
   }
 
   &__card-text {
-    font-size: $font-size-32;
-    line-height: $line-height-32;
+    font-size: 22px;
+    line-height: 100%;
     color: $color-white;
   }
 
   &__description {
-    font-size: $font-size-20;
-    line-height: $line-height-20;
+    font-size: 18px;
+    line-height: 140%;
     font-weight: 400;
   }
 }
 </style>
-

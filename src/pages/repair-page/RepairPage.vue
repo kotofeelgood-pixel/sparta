@@ -61,12 +61,11 @@ const repairs = [
   padding-top: 24px;
 
   &__description {
-    font-size: $font-size-20;
-    line-height: $line-height-20;
-    font-weight: 400;
+    font-size: 16px;
     line-height: 175%;
+    font-weight: 400;
     padding-top: 40px;
-    padding-bottom: 96px;
+    padding-bottom: $m-sec;
   }
 
   :deep(.repair-section) {

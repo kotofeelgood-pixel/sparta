@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FormComponent from './FormComponent.vue';
+import FormComponent from './FormComponent.vue'
 
 defineProps<{
   title: string
@@ -13,28 +13,27 @@ defineProps<{
 <template>
   <div class="block-form" :class="`block-form--${theme}`">
     <div class="block-form__decorator">
-      <img src="/images/circle-decorator.png" alt="" class="block-form__decorator-image">
+      <img src="/images/circle-decorator.png" alt="" class="block-form__decorator-image" />
     </div>
     <div class="block-form__image" :class="customClass">
-      <img :src="image" class="block-form__image-content">
+      <img :src="image" class="block-form__image-content" />
     </div>
-    <div class="block-form__container">
+    <div class="block-form__container container">
       <div class="block-form__content">
         <div class="block-form__header">
           <h3 class="block-form__title">{{ title }}</h3>
           <p class="block-form__subtitle">{{ subtitle }}</p>
         </div>
-        <FormComponent :theme="theme"/>
+        <FormComponent :theme="theme" />
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-
 .block-form {
   position: relative;
-  height: 677px;
+  height: 580px;
   overflow: hidden;
   background-image: url('/images/form-bg.png');
   background-size: cover;
@@ -48,7 +47,7 @@ defineProps<{
 
   &--dark {
     background-image: url('/images/form-dark-bg.png');
-    border-radius: 0 0 0 300px;
+    border-radius: 0 0 0 200px;
     background-color: $color-dark;
 
     @include bp($point_2) {
@@ -61,17 +60,10 @@ defineProps<{
   }
 
   &__container {
-    max-width: 1187px;
-    margin: 0 auto;
-    padding: 0 16px;
     display: flex;
     align-items: center;
     height: 100%;
     position: relative;
-
-    @media (min-width: 1024px) {
-      padding-right: 0;
-    }
   }
 
   &__content {
@@ -84,11 +76,10 @@ defineProps<{
   }
 
   &__title {
-    font-size: $font-size-55;
-    line-height: $line-height-55;
+    font-size: 50px;
     font-family: $font-family-bebas;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 24px;
 
     @include bp($point_2) {
       font-size: 35px;
@@ -105,14 +96,8 @@ defineProps<{
   }
 
   &__subtitle {
-    font-size: $font-size-20;
-    line-height: $line-height-20;
-    font-weight: 400;
-    line-height: 175%;
-
-    @include bp($point_2) {
-      font-size: 18px;
-    }
+    font-size: 18px;
+    line-height: 160%;
   }
 
   &--dark &__subtitle {

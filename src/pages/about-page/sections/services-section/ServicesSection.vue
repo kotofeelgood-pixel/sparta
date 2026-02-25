@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import SpeedIcon from '@/components/icons/SpeedIcon.vue';
-import ShieldIcon from '@/components/icons/ShieldIcon.vue';
-import GarantIcon from '@/components/icons/GarantIcon.vue';
-
+import SpeedIcon from '@/components/icons/SpeedIcon.vue'
+import ShieldIcon from '@/components/icons/ShieldIcon.vue'
+import GarantIcon from '@/components/icons/GarantIcon.vue'
 </script>
 
 <template>
@@ -15,7 +14,10 @@ import GarantIcon from '@/components/icons/GarantIcon.vue';
           </div>
           <h3 class="services-section__title">Скорость</h3>
         </div>
-        <p class="services-section__text">Мы быстро расцениваем заявки и оперативно доставляем запчасти, чтобы сократить время простоя техники.</p>
+        <p class="services-section__text">
+          Мы быстро расцениваем заявки и оперативно доставляем запчасти, чтобы сократить время
+          простоя техники.
+        </p>
       </li>
       <li class="services-section__item">
         <div class="services-section__header">
@@ -24,7 +26,9 @@ import GarantIcon from '@/components/icons/GarantIcon.vue';
           </div>
           <h3 class="services-section__title">Надежность</h3>
         </div>
-        <p class="services-section__text">Мы не работаем с подделками и сомнительными производителями.</p>
+        <p class="services-section__text">
+          Мы не работаем с подделками и сомнительными производителями.
+        </p>
       </li>
       <li class="services-section__item">
         <div class="services-section__header">
@@ -33,7 +37,9 @@ import GarantIcon from '@/components/icons/GarantIcon.vue';
           </div>
           <h3 class="services-section__title">Гарантия</h3>
         </div>
-        <p class="services-section__text">Мы всегда честно сообщаем о сроках, стоимости. На все запчасти есть гарантия.</p>
+        <p class="services-section__text">
+          Мы всегда честно сообщаем о сроках, стоимости. На все запчасти есть гарантия.
+        </p>
       </li>
     </ul>
   </div>
@@ -41,7 +47,7 @@ import GarantIcon from '@/components/icons/GarantIcon.vue';
 
 <style scoped lang="scss">
 .services-section {
-  padding: 56px;
+  padding: 32px;
   border-radius: 10px;
   overflow: hidden;
   color: $color-white;
@@ -53,7 +59,7 @@ import GarantIcon from '@/components/icons/GarantIcon.vue';
   &__list {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 16px;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -61,7 +67,7 @@ import GarantIcon from '@/components/icons/GarantIcon.vue';
 
     @media (min-width: 1024px) {
       grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
+      gap: 32px;
     }
   }
 
@@ -84,14 +90,14 @@ import GarantIcon from '@/components/icons/GarantIcon.vue';
   }
 
   &__title {
-    font-size: $font-size-25;
-    line-height: $line-height-25;
+    font-size: 22px;
+    line-height: 140%;
     font-weight: 600;
   }
 
   &__text {
-    font-size: $font-size-20;
-    line-height: $line-height-20;
+    font-size: 16px;
+    line-height: 140%;
     font-weight: 300;
   }
 }

@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import 'swiper/css/pagination';
+import 'swiper/css/pagination'
 
-import { useMediaStoreRefs } from '@/stores/useMediaStore';
-import { Navigation, Pagination } from 'swiper/modules';
+import { useMediaStoreRefs } from '@/stores/useMediaStore'
+import { Navigation, Pagination } from 'swiper/modules'
 
-import SpeedIcon from '@/components/icons/SpeedIcon.vue';
-import ShieldIcon from '@/components/icons/ShieldIcon.vue';
-import GarantIcon from '@/components/icons/GarantIcon.vue';
-import ChevronIcon from '@/components/icons/ChevronIcon.vue';
+import SpeedIcon from '@/components/icons/SpeedIcon.vue'
+import ShieldIcon from '@/components/icons/ShieldIcon.vue'
+import GarantIcon from '@/components/icons/GarantIcon.vue'
+import ChevronIcon from '@/components/icons/ChevronIcon.vue'
 
-const { isMobile } = useMediaStoreRefs();
+const { isMobile } = useMediaStoreRefs()
 </script>
 
 <template>
   <div class="intro-slider">
     <div class="intro-slider__decorator" v-if="!isMobile">
-      <img src="/images/slider-decorator.png" alt="">
+      <img src="/images/slider-decorator.png" alt="" />
     </div>
     <Swiper
       :modules="[Navigation, Pagination]"
@@ -42,7 +42,10 @@ const { isMobile } = useMediaStoreRefs();
                     </div>
                     <h3 class="intro-slider__feature-title">Скорость</h3>
                   </div>
-                  <p class="intro-slider__feature-text">Мы быстро расцениваем заявки и оперативно доставляем запчасти, чтобы сократить время простоя техники.</p>
+                  <p class="intro-slider__feature-text">
+                    Мы быстро расцениваем заявки и оперативно доставляем запчасти, чтобы сократить
+                    время простоя техники.
+                  </p>
                 </li>
                 <li class="intro-slider__feature">
                   <div class="intro-slider__feature-header">
@@ -51,7 +54,9 @@ const { isMobile } = useMediaStoreRefs();
                     </div>
                     <h3 class="intro-slider__feature-title">Надежность</h3>
                   </div>
-                  <p class="intro-slider__feature-text">Мы не работаем с подделками и сомнительными производителями.</p>
+                  <p class="intro-slider__feature-text">
+                    Мы не работаем с подделками и сомнительными производителями.
+                  </p>
                 </li>
                 <li class="intro-slider__feature">
                   <div class="intro-slider__feature-header">
@@ -60,13 +65,20 @@ const { isMobile } = useMediaStoreRefs();
                     </div>
                     <h3 class="intro-slider__feature-title">Гарантия</h3>
                   </div>
-                  <p class="intro-slider__feature-text">Мы всегда честно сообщаем о сроках, стоимости. На все запчасти есть гарантия.</p>
+                  <p class="intro-slider__feature-text">
+                    Мы всегда честно сообщаем о сроках, стоимости. На все запчасти есть гарантия.
+                  </p>
                 </li>
               </ul>
             </div>
             <div class="intro-slider__image-wrapper">
-              <img src="/images/intro-slide.png" alt="" class="intro-slider__image" v-if="!isMobile">
-              <img src="/images/hero-mobile.png" alt="" class="intro-slider__image" v-else>
+              <img
+                src="/images/intro-slide.png"
+                alt=""
+                class="intro-slider__image"
+                v-if="!isMobile"
+              />
+              <img src="/images/hero-mobile.png" alt="" class="intro-slider__image" v-else />
             </div>
           </div>
         </div>
@@ -77,8 +89,10 @@ const { isMobile } = useMediaStoreRefs();
         <div class="intro-slider-navigation-prev intro-slider__nav-button">
           <ChevronIcon />
         </div>
-        <div class="intro-slider-pagination swiper-pagination"/>
-        <div class="intro-slider-navigation-next intro-slider__nav-button intro-slider__nav-button--next">
+        <div class="intro-slider-pagination swiper-pagination" />
+        <div
+          class="intro-slider-navigation-next intro-slider__nav-button intro-slider__nav-button--next"
+        >
           <ChevronIcon />
         </div>
       </div>
@@ -87,7 +101,6 @@ const { isMobile } = useMediaStoreRefs();
 </template>
 
 <style scoped lang="scss">
-
 .intro-slider {
   position: relative;
   background-image: url('/images/intro-bg.png');
@@ -174,13 +187,13 @@ const { isMobile } = useMediaStoreRefs();
   &__feature-header {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 20px;
     margin-bottom: 12px;
 
     @include bp($point_2) {
       flex-direction: column;
       align-items: center;
-      gap: 10px
+      gap: 10px;
     }
   }
 
@@ -188,6 +201,8 @@ const { isMobile } = useMediaStoreRefs();
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 50px;
+    height: 50px;
 
     @include bp($point_2) {
       width: 45px;
@@ -196,8 +211,7 @@ const { isMobile } = useMediaStoreRefs();
   }
 
   &__feature-title {
-    font-size: $font-size-25;
-    line-height: $line-height-25;
+    font-size: 20px;
     color: $color-gray;
     font-weight: 600;
 
@@ -208,12 +222,10 @@ const { isMobile } = useMediaStoreRefs();
   }
 
   &__feature-text {
-    font-size: $font-size-20;
-    line-height: $line-height-20;
+    font-size: 16px;
     color: $color-gray;
 
     @include bp($point_2) {
-      font-size: 16px;
       text-align: center;
     }
   }
@@ -222,8 +234,6 @@ const { isMobile } = useMediaStoreRefs();
     position: absolute;
     top: 0;
     right: 0;
-
-
 
     @include bp($point_2) {
       bottom: 0;

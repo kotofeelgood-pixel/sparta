@@ -36,7 +36,7 @@ const pageTitle = computed(() => {
 
 <template>
   <div class="breadcrumbs">
-    <div class="breadcrumbs__container">
+    <div class="breadcrumbs__container container">
       <ul class="breadcrumbs__list">
         <li v-for="(item, index) in breadcrumbs" :key="index" class="breadcrumbs__item">
           <component :is="item.to ? RouterLink : 'span'" :to="item.to" class="breadcrumbs__link">
@@ -54,20 +54,15 @@ const pageTitle = computed(() => {
 
 <style scoped lang="scss">
 .breadcrumbs {
-  &__container {
-    max-width: 1187px;
-    margin: 0 auto;
-    padding: 0 16px;
-  }
-
   &__list {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 40px;
-    margin-bottom: 28px;
+    margin-top: 24px;
+    margin-bottom: 16px;
     list-style: none;
+    font-weight: 400;
 
     @include bp($point_2) {
       margin: 20px 0 10px 0;
@@ -75,12 +70,7 @@ const pageTitle = computed(() => {
   }
 
   &__item {
-    font-size: $font-size-18;
-    line-height: $line-height-18;
-
-    @include bp($point_2) {
-      font-size: 16px;
-    }
+    font-size: 16px;
   }
 
   a {
@@ -98,12 +88,11 @@ const pageTitle = computed(() => {
 
   &__separator {
     color: $color-yellow;
-    margin: 0 4px;
+    margin: 0 2px;
   }
 
   &__title {
-    font-size: $font-size-55;
-    line-height: $line-height-55;
+    font-size: 50px;
     font-family: $font-family-bebas;
     text-transform: uppercase;
     color: $color-dark;

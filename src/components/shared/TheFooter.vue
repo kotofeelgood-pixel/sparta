@@ -1,69 +1,102 @@
 <script setup lang="ts">
-import LogoIcon from '../icons/LogoIcon.vue';
-import FooterPhoneIcon from '../icons/FooterPhoneIcon.vue';
-import TelegramIcon from '../icons/TelegramIcon.vue';
-import WhatsappIcon from '../icons/WhatsappIcon.vue';
-import MarkerIcon from '../icons/MarkerIcon.vue';
-import EnvelopeIcon from '../icons/EnvelopeIcon.vue';
+import LogoIcon from '../icons/LogoIcon.vue'
+import FooterPhoneIcon from '../icons/FooterPhoneIcon.vue'
+import TelegramIcon from '../icons/TelegramIcon.vue'
+import WhatsappIcon from '../icons/WhatsappIcon.vue'
+import MarkerIcon from '../icons/MarkerIcon.vue'
+import EnvelopeIcon from '../icons/EnvelopeIcon.vue'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
 
 const emit = defineEmits<{
-  callbackClick: [];
-}>();
+  callbackClick: []
+}>()
+
+const route = useRoute()
+
+const isNotMT = computed(() => {
+  switch (route.path) {
+    case '/repair':
+      return true
+    default:
+      return false
+  }
+})
 </script>
 
 <template>
-  <footer class="footer">
-    <div class="footer__inner">
+  <footer class="footer" :class="{ mt: isNotMT }">
+    <div class="footer__inner container">
       <div class="footer__logo-block">
         <RouterLink to="/" class="footer__logo-link">
-          <LogoIcon/>
+          <LogoIcon />
         </RouterLink>
         <span class="footer__company-name">ООО "Спарт"</span>
       </div>
       <div class="footer__nav">
         <ul class="footer__nav-list">
-          <li class="footer__nav-item"><RouterLink to="/catalog" class="footer__nav-link">Каталоги</RouterLink></li>
-          <li class="footer__nav-item"><RouterLink to="/shop" class="footer__nav-link">Запчасти</RouterLink></li>
-          <li class="footer__nav-item"><RouterLink to="/shop" class="footer__nav-link">Агрегаты</RouterLink></li>
-          <li class="footer__nav-item"><RouterLink to="/repair" class="footer__nav-link">Ремонт</RouterLink></li>
-          <li class="footer__nav-item"><RouterLink to="/catalog" class="footer__nav-link">Спецтехника</RouterLink></li>
+          <li class="footer__nav-item">
+            <RouterLink to="/catalog" class="footer__nav-link">Каталоги</RouterLink>
+          </li>
+          <li class="footer__nav-item">
+            <RouterLink to="/shop" class="footer__nav-link">Запчасти</RouterLink>
+          </li>
+          <li class="footer__nav-item">
+            <RouterLink to="/shop" class="footer__nav-link">Агрегаты</RouterLink>
+          </li>
+          <li class="footer__nav-item">
+            <RouterLink to="/repair" class="footer__nav-link">Ремонт</RouterLink>
+          </li>
+          <li class="footer__nav-item">
+            <RouterLink to="/catalog" class="footer__nav-link">Спецтехника</RouterLink>
+          </li>
         </ul>
         <ul class="footer__nav-list">
-          <li class="footer__nav-item"><RouterLink to="/catalog" class="footer__nav-link">Марки машин</RouterLink></li>
-          <li class="footer__nav-item"><RouterLink to="/delivery" class="footer__nav-link">Экспресс-доставка</RouterLink></li>
-          <li class="footer__nav-item"><RouterLink to="/about" class="footer__nav-link">О компании</RouterLink></li>
-          <li class="footer__nav-item"><RouterLink to="/about" class="footer__nav-link">Контакты</RouterLink></li>
+          <li class="footer__nav-item">
+            <RouterLink to="/catalog" class="footer__nav-link">Марки машин</RouterLink>
+          </li>
+          <li class="footer__nav-item">
+            <RouterLink to="/delivery" class="footer__nav-link">Экспресс-доставка</RouterLink>
+          </li>
+          <li class="footer__nav-item">
+            <RouterLink to="/about" class="footer__nav-link">О компании</RouterLink>
+          </li>
+          <li class="footer__nav-item">
+            <RouterLink to="/about" class="footer__nav-link">Контакты</RouterLink>
+          </li>
         </ul>
       </div>
       <div class="footer__contacts">
         <div class="footer__contacts-block">
           <div class="footer__phone-block">
             <a href="#" class="footer__phone-link">
-              <FooterPhoneIcon class="footer__phone-icon"/>
+              <FooterPhoneIcon class="footer__phone-icon" />
               <span>+7 966 032 02 30</span>
             </a>
             <a href="#" class="footer__social-link">
-              <WhatsappIcon/>
+              <WhatsappIcon />
             </a>
             <a href="#" class="footer__social-link">
-              <TelegramIcon/>
+              <TelegramIcon />
             </a>
           </div>
           <button type="button" class="footer__callback-link" @click="emit('callbackClick')">
-          Заказать звонок
-        </button>
+            Заказать звонок
+          </button>
         </div>
         <a href="#" class="footer__email-link">
-          <EnvelopeIcon class="footer__email-icon"/>
+          <EnvelopeIcon class="footer__email-icon" />
           <span>info@spart.pro</span>
         </a>
         <div class="footer__address-block">
-          <MarkerIcon class="footer__address-icon"/>
-          <span class="footer__address-text">Приморский край, г.  Владивосток,  ул. Снеговая, д. 64</span>
+          <MarkerIcon class="footer__address-icon" />
+          <span class="footer__address-text"
+            >Приморский край, г. Владивосток, ул. Снеговая, д. 64</span
+          >
         </div>
       </div>
     </div>
-    <div class="footer__copyright">© ООО Спарт.  Все права защищены. 2025</div>
+    <div class="footer__copyright">© ООО Спарт. Все права защищены. 2025</div>
   </footer>
 </template>
 
@@ -74,21 +107,17 @@ const emit = defineEmits<{
   background-position: center;
   background-repeat: no-repeat;
   color: $color-white;
-  padding-top: 128px;
-  padding-bottom: 80px;
+  padding: $m-sec 0;
 
-  @include bp($point_2) {
-    padding: 80px 0;
+  &.mt {
+    margin-top: 0;
   }
 
   &__inner {
-    max-width: 1187px;
-    margin: 0 auto;
-    padding: 0 16px;
     display: flex;
     justify-content: space-between;
     gap: 144px;
-    margin-bottom: 64px;
+    margin-bottom: 32px;
 
     @include bp($point_2) {
       gap: 30px;
@@ -119,28 +148,24 @@ const emit = defineEmits<{
     }
 
     :deep(svg) {
-        @include bp($point_2) {
-          width: 100%;
-          height: 100%;
-        }
+      @include bp($point_2) {
+        width: 100%;
+        height: 100%;
       }
+    }
   }
 
   &__company-name {
-    font-size: $font-size-18;
-    line-height: $line-height-18;
+    font-size: 18px;
     font-weight: 300;
-
-    @include bp($point_2) {
-      font-size: 16px;
-    }
+    line-height: 160%;
   }
 
   &__nav {
     display: flex;
     gap: 144px;
-    font-size: $font-size-16;
-    line-height: $line-height-16;
+    font-size: 16px;
+    line-height: 160%;
     font-weight: 300;
   }
 
@@ -198,10 +223,9 @@ const emit = defineEmits<{
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: $font-size-20;
-    line-height: $line-height-20;
+    font-size: 20px;
     font-weight: 700;
-    line-height: 1;
+    line-height: 160%;
     color: $color-white;
     text-decoration: none;
   }
@@ -288,8 +312,8 @@ const emit = defineEmits<{
 
   &__copyright {
     text-align: center;
-    font-size: $font-size-16;
-    line-height: $line-height-16;
+    font-size: 14px;
+    line-height: 160%;
     font-weight: 300;
   }
 }

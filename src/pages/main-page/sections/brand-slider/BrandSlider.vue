@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { toRaw } from 'vue';
-import { Navigation } from 'swiper/modules';
-import ChevronIcon from '@/components/icons/ChevronIcon.vue';
+import { toRaw } from 'vue'
+import { Navigation } from 'swiper/modules'
+import ChevronIcon from '@/components/icons/ChevronIcon.vue'
 
 const breakpoints = {
   0: {
@@ -17,19 +17,28 @@ const breakpoints = {
     spaceBetween: 40,
   },
   1024: {
-    slidesPerView: 4,
+    slidesPerView: 5,
     spaceBetween: 40,
   },
-};
+}
 </script>
 
 <template>
   <div class="brand-slider">
-    <slot name="head"/>
+    <slot name="head" />
     <div class="brand-slider__wrapper">
-      <div class="brand-slider__container">
-        <div class="brand-slider-navigation-prev brand-slider__nav-button brand-slider__nav-button--prev">
-          <ChevronIcon />
+      <div class="brand-slider__container container">
+        <div class="brand-slider__navigation">
+          <div
+            class="brand-slider-navigation-prev brand-slider__nav-button brand-slider__nav-button--prev"
+          >
+            <ChevronIcon />
+          </div>
+          <div
+            class="brand-slider-navigation-next brand-slider__nav-button brand-slider__nav-button--next"
+          >
+            <ChevronIcon />
+          </div>
         </div>
         <Swiper
           :slides-per-view="1"
@@ -44,28 +53,23 @@ const breakpoints = {
         >
           <SwiperSlide v-for="brand in 6" :key="brand">
             <div class="brand-slider__item">
-              <img :src="`/images/brand-${brand + 1}.png`" alt="" class="brand-slider__image">
+              <img :src="`/images/brand-${brand + 1}.png`" alt="" class="brand-slider__image" />
             </div>
           </SwiperSlide>
         </Swiper>
-        <div class="brand-slider-navigation-next brand-slider__nav-button brand-slider__nav-button--next">
-          <ChevronIcon />
-        </div>
       </div>
     </div>
   </div>
 </template>
 
-
 <style scoped lang="scss">
 .brand-slider {
   &__wrapper {
     background-color: $color-white;
-    padding: 28px 0;
+    padding: 24px 0;
 
     @media (min-width: 1024px) {
-      margin-bottom: 109px;
-      padding: 28px 0;
+      margin-bottom: $m-sec;
     }
 
     @include bp($point_2) {
@@ -74,12 +78,20 @@ const breakpoints = {
   }
 
   &__container {
-    max-width: 1187px;
-    margin: 0 auto;
-    padding: 0 16px;
+    position: relative;
+  }
+
+  &__navigation {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 105%;
+    z-index: 10;
   }
 
   &__nav-button {
@@ -120,26 +132,21 @@ const breakpoints = {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
-
-    @include bp($point_2) {
-      height: 70px;
-
-    }
+    height: 100%;
   }
 
   &__image {
     display: block;
     height: 100%;
     object-fit: contain;
-
-    @include bp($point_2) {
-      width: 100px;
-    }
   }
 }
 
 :deep(.swiper-button-lock) {
   background-color: $color-light-gray !important;
+}
+
+:deep(.swiper-wrapper) {
+  align-items: center;
 }
 </style>

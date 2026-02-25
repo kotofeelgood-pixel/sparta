@@ -1,17 +1,27 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <section class="about-block">
-    <img src="/images/about-elipse.png" alt="" class="about-block__elipse">
-    <img src="/images/about.png" alt="О компании" class="about-block__image">
-    <div class="about-block__container">
+    <img src="/images/about-elipse.png" alt="" class="about-block__elipse" />
+    <img src="/images/about.png" alt="О компании" class="about-block__image" />
+    <div class="about-block__container container">
       <div class="about-block__content">
         <div class="about-block__text">
           <h3 class="about-block__title">О компании</h3>
           <div class="about-block__description">
-            <p>Gd ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam</p>
-            <p>Kst, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatu</p>
+            <p>
+              Gd ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+              laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+              architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
+              sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+              voluptatem sequi nesciunt. Neque porro quisquam
+            </p>
+            <p>
+              Kst, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
+              numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
+              voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
+              suscipit laboriosam, nisi ut aliquid ex ea commodi consequatu
+            </p>
           </div>
         </div>
       </div>
@@ -20,10 +30,13 @@
           <li v-for="i in 3" :key="i" class="about-block__feature-item">
             <div class="about-block__feature-content">
               <div class="about-block__feature-image-wrapper">
-                <img :src="`/images/about-${i}.png`" alt="" class="about-block__feature-image">
+                <img :src="`/images/about-${i}.png`" alt="" class="about-block__feature-image" />
               </div>
               <h5 class="about-block__feature-title">Sed ut perspiciatis</h5>
-              <p class="about-block__feature-text">ed ut perspiciatis unde omnis i natus error sit voluptatem accusantium doloremque laudantium, totam rem</p>
+              <p class="about-block__feature-text">
+                ed ut perspiciatis unde omnis i natus error sit voluptatem accusantium doloremque
+                laudantium, totam rem
+              </p>
             </div>
           </li>
         </ul>
@@ -40,45 +53,25 @@
   background-repeat: no-repeat;
   position: relative;
   color: $color-white;
-  border-radius: 0 0 300px 0;
-  padding: 80px 0;
-
-  @media (min-width: 1024px) {
-    padding: 128px 0;
-  }
+  border-radius: 0 0 200px 0;
+  padding: $m-sec 0;
 
   @include bp($point_2) {
     padding: 0 0 50px 0;
     border-radius: 0 0 160px 0;
   }
 
-  &__container {
-    max-width: 1187px;
-    margin: 0 auto;
-    padding: 0 16px;
-    position: relative;
-
-    @media (min-width: 1024px) {
-      padding-left: 0;
-      padding-right: 16px;
-    }
-
-    @include bp($point_2) {
-      padding-top: 40px;
-    }
-  }
-
   &__content {
     position: relative;
-    margin-bottom: 64px;
+    margin-bottom: $m-sec;
     overflow: visible;
 
     @media (min-width: 1024px) {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 80px;
-      margin-bottom: 96px;
+      gap: 40px;
+      margin-bottom: $m-sec;
     }
   }
 
@@ -89,7 +82,7 @@
     z-index: 1;
 
     @media (min-width: 1024px) {
-      width: 800px;
+      width: 500px;
       left: 0;
     }
 
@@ -105,8 +98,9 @@
     z-index: 10;
 
     @media (min-width: 1024px) {
-      width: 768px;
-      left: 10px;
+      width: 600px;
+      left: 9%;
+      top: 0;
     }
 
     @include bp($point_2) {
@@ -126,21 +120,15 @@
     }
 
     @include bp($point_2) {
-
       font-size: 18px;
     }
   }
 
   &__title {
-    font-size: $font-size-55;
-    line-height: $line-height-55;
+    font-size: 50px;
     font-family: $font-family-bebas;
     text-transform: uppercase;
     margin-bottom: 24px;
-
-    @media (min-width: 1024px) {
-      margin-bottom: 32px;
-    }
 
     @include bp($point_2) {
       font-size: 35px;
@@ -153,9 +141,9 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    font-size: $font-size-20;
-    line-height: $line-height-20;
-    line-height: 175%;
+    font-size: 18px;
+    line-height: 160%;
+    font-weight: 400;
 
     @include bp($point_2) {
       font-size: 18px;
@@ -163,14 +151,10 @@
     }
   }
 
-  &__features {
-    // features styles
-  }
-
   &__features-list {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 16px;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -179,7 +163,6 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 40px;
     }
-
   }
 
   &__feature-item {
@@ -206,7 +189,7 @@
   }
 
   &__feature-image-wrapper {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -223,9 +206,8 @@
   }
 
   &__feature-title {
-    font-size: $font-size-25;
-    line-height: $line-height-25;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 500;
     margin-bottom: 16px;
 
     @include bp($point_2) {
@@ -237,15 +219,9 @@
   }
 
   &__feature-text {
-    font-size: $font-size-20;
-    line-height: $line-height-20;
-    line-height: 175%;
-
-    @include bp($point_2) {
-      font-size: 18px;
-      font-weight: 300;
-    }
+    font-size: 18px;
+    line-height: 160%;
+    font-weight: 400;
   }
 }
 </style>
-

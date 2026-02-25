@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import LogoIcon from '../icons/LogoIcon.vue';
-import AddressIcon from '../icons/AddressIcon.vue';
-import PhoneCircleIcon from '../icons/PhoneCircleIcon.vue';
-import WhatsappIcon from '../icons/WhatsappIcon.vue';
-import ProfileIcon from '../icons/ProfileIcon.vue';
-import CartIcon from '../icons/CartIcon.vue';
-import SearchIcon from '../icons/SearchIcon.vue';
+import LogoIcon from '../icons/LogoIcon.vue'
+import AddressIcon from '../icons/AddressIcon.vue'
+import PhoneCircleIcon from '../icons/PhoneCircleIcon.vue'
+import WhatsappIcon from '../icons/WhatsappIcon.vue'
+import ProfileIcon from '../icons/ProfileIcon.vue'
+import CartIcon from '../icons/CartIcon.vue'
+import SearchIcon from '../icons/SearchIcon.vue'
 
 const emit = defineEmits<{
-  authClick: [];
-  searchClick: [];
-}>();
+  authClick: []
+  searchClick: []
+}>()
 </script>
 
 <template>
@@ -18,35 +18,35 @@ const emit = defineEmits<{
     <div class="header__top">
       <div class="header__top-inner">
         <RouterLink to="/" class="header__logo-link">
-          <LogoIcon class="header__logo"/>
+          <LogoIcon class="header__logo" />
         </RouterLink>
         <div class="header__location">
-          <AddressIcon class="header__location-icon"/>
+          <AddressIcon class="header__location-icon" />
           <span class="header__location-text">Владивосток</span>
         </div>
         <ul class="header__phone-list">
           <li class="header__phone-item">
             <a href="#" class="header__phone-link">
-              <PhoneCircleIcon class="header__phone-icon"/>
+              <PhoneCircleIcon class="header__phone-icon" />
               <span class="header__phone-text">+7 966 032 02 30</span>
             </a>
           </li>
           <li class="header__phone-item">
             <a href="#" class="header__social-link">
-              <WhatsappIcon/>
+              <WhatsappIcon />
             </a>
           </li>
         </ul>
         <ul class="header__actions-list">
           <li class="header__actions-item">
             <RouterLink to="/cart" class="header__cart-link">
-              <CartIcon class="header__cart-icon"/>
+              <CartIcon class="header__cart-icon" />
               <span class="header__cart-text">Корзина (10)</span>
             </RouterLink>
           </li>
           <li class="header__actions-item">
             <button type="button" class="header__profile-link" @click="emit('authClick')">
-              <ProfileIcon class="header__profile-icon"/>
+              <ProfileIcon class="header__profile-icon" />
               <span class="header__profile-text">Личный кабинет</span>
             </button>
           </li>
@@ -59,13 +59,27 @@ const emit = defineEmits<{
           <RouterLink to="/catalog" class="header__catalog-button">Каталоги</RouterLink>
         </div>
         <ul class="header__nav-list">
-          <li class="header__nav-item"><RouterLink to="/shop" class="header__nav-link">Запчасти</RouterLink></li>
-          <li class="header__nav-item"><RouterLink to="/shop" class="header__nav-link">Агрегаты</RouterLink></li>
-          <li class="header__nav-item"><RouterLink to="/repair" class="header__nav-link">Ремонт</RouterLink></li>
-          <li class="header__nav-item"><RouterLink to="/catalog" class="header__nav-link">Спецтехника</RouterLink></li>
-          <li class="header__nav-item"><RouterLink to="/delivery" class="header__nav-link">Экспресс-доставка</RouterLink></li>
-          <li class="header__nav-item"><RouterLink to="/about" class="header__nav-link">О компании</RouterLink></li>
-          <li class="header__nav-item"><RouterLink to="/about" class="header__nav-link">Контакты</RouterLink></li>
+          <li class="header__nav-item">
+            <RouterLink to="/shop" class="header__nav-link">Запчасти</RouterLink>
+          </li>
+          <li class="header__nav-item">
+            <RouterLink to="/shop" class="header__nav-link">Агрегаты</RouterLink>
+          </li>
+          <li class="header__nav-item">
+            <RouterLink to="/repair" class="header__nav-link">Ремонт</RouterLink>
+          </li>
+          <li class="header__nav-item">
+            <RouterLink to="/catalog" class="header__nav-link">Спецтехника</RouterLink>
+          </li>
+          <li class="header__nav-item">
+            <RouterLink to="/delivery" class="header__nav-link">Экспресс-доставка</RouterLink>
+          </li>
+          <li class="header__nav-item">
+            <RouterLink to="/about" class="header__nav-link">О компании</RouterLink>
+          </li>
+          <li class="header__nav-item">
+            <RouterLink to="/about" class="header__nav-link">Контакты</RouterLink>
+          </li>
         </ul>
         <button
           type="button"
@@ -73,7 +87,7 @@ const emit = defineEmits<{
           @click="emit('searchClick')"
           aria-label="Поиск"
         >
-          <SearchIcon/>
+          <SearchIcon />
         </button>
       </div>
     </div>
@@ -84,13 +98,12 @@ const emit = defineEmits<{
 .header {
   &__top {
     background-color: $color-dark;
-    padding: 14px 0;
+    padding: 8px 0;
     color: $color-white;
   }
 
   &__bottom {
     background-color: $color-white;
-    height: 66px;
   }
 
   &__top-inner,
@@ -116,7 +129,7 @@ const emit = defineEmits<{
   }
 
   &__logo {
-    display: block;
+    display: flex;
   }
 
   &__location {
@@ -132,7 +145,7 @@ const emit = defineEmits<{
   }
 
   &__location-text {
-    font-size: $font-size-18;
+    font-size: 16px;
     line-height: $line-height-18;
     font-weight: 300;
   }
@@ -148,6 +161,9 @@ const emit = defineEmits<{
 
   &__phone-item {
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__phone-link {
@@ -156,7 +172,7 @@ const emit = defineEmits<{
     gap: 8px;
     background-color: $color-yellow;
     color: $color-dark;
-    padding: 10px 20px;
+    padding: 8px 20px;
     border-radius: 9999px;
     text-decoration: none;
   }
@@ -168,8 +184,7 @@ const emit = defineEmits<{
   }
 
   &__phone-text {
-    font-size: $font-size-20;
-    line-height: $line-height-20;
+    font-size: 18px;
     font-weight: 700;
     line-height: 1;
   }
@@ -227,8 +242,7 @@ const emit = defineEmits<{
 
   &__cart-text,
   &__profile-text {
-    font-size: $font-size-18;
-    line-height: $line-height-18;
+    font-size: 16px;
     font-weight: 300;
     color: $color-white;
   }
@@ -244,11 +258,11 @@ const emit = defineEmits<{
     align-items: center;
     justify-content: center;
     background-color: $color-yellow;
-    height: 66px;
+    height: 48px;
     text-transform: uppercase;
     font-weight: 700;
     color: $color-dark;
-    padding: 0 32px;
+    padding: 0 20px;
     text-decoration: none;
     transition: opacity 0.2s;
 
@@ -285,11 +299,17 @@ const emit = defineEmits<{
     align-items: center;
     justify-content: center;
     background-color: $color-yellow;
-    height: 66px;
-    width: 77px;
+    height: 48px;
+    width: 48px;
+    padding: 14px;
     border: none;
     cursor: pointer;
     transition: opacity 0.2s;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
 
     &:hover {
       opacity: 0.9;
@@ -297,4 +317,3 @@ const emit = defineEmits<{
   }
 }
 </style>
-
