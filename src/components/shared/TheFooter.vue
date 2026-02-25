@@ -7,6 +7,7 @@ import MarkerIcon from '../icons/MarkerIcon.vue'
 import EnvelopeIcon from '../icons/EnvelopeIcon.vue'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
+import MaxIcon from '../icons/MaxIcon.vue'
 
 const emit = defineEmits<{
   callbackClick: []
@@ -78,6 +79,9 @@ const isNotMT = computed(() => {
             </a>
             <a href="#" class="footer__social-link">
               <TelegramIcon />
+            </a>
+            <a href="#" class="footer__social-link">
+              <MaxIcon />
             </a>
           </div>
           <button type="button" class="footer__callback-link" @click="emit('callbackClick')">
@@ -194,7 +198,7 @@ const isNotMT = computed(() => {
   }
 
   &__contacts {
-    max-width: 292px;
+    max-width: 310px;
     text-align: right;
 
     @include bp($point_2) {
