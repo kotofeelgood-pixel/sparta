@@ -1,34 +1,32 @@
 <script setup lang="ts">
-import { ref, watch, nextTick } from 'vue';
-import SearchIcon from '@/components/icons/SearchIcon.vue';
+import { ref, watch, nextTick } from 'vue'
+import SearchIcon from '@/components/icons/SearchIcon.vue'
 
 const props = defineProps<{
-  open: boolean;
-}>();
+  open: boolean
+}>()
 
 const emit = defineEmits<{
-  close: [];
-}>();
+  close: []
+}>()
 
-const searchQuery = ref('');
-const searchInput = ref<HTMLInputElement | null>(null);
+const searchQuery = ref('')
+const searchInput = ref<HTMLInputElement | null>(null)
 
 const closeModal = () => {
-  searchQuery.value = '';
-  emit('close');
-};
+  searchQuery.value = ''
+  emit('close')
+}
 
-watch(() => props.open, async (newValue) => {
-  if (newValue) {
-    await nextTick();
-    searchInput.value?.focus();
-  }
-});
-
-const handleClear = () => {
-  searchQuery.value = '';
-  searchInput.value?.focus();
-};
+watch(
+  () => props.open,
+  async (newValue) => {
+    if (newValue) {
+      await nextTick()
+      searchInput.value?.focus()
+    }
+  },
+)
 </script>
 
 <template>
@@ -42,11 +40,7 @@ const handleClear = () => {
         aria-labelledby="modal-search-title"
         :aria-hidden="!open"
       >
-        <div
-          class="modal-search__overlay"
-          aria-hidden="true"
-          @click="closeModal"
-        />
+        <div class="modal-search__overlay" aria-hidden="true" @click="closeModal" />
         <div class="modal-search__box">
           <div class="modal-search__container">
             <div class="modal-search__input-wrapper">
@@ -64,24 +58,25 @@ const handleClear = () => {
                 @keydown.esc="closeModal"
               />
               <button
-                v-if="searchQuery"
-                type="button"
-                class="modal-search__clear"
-                aria-label="Очистить"
-                @click="handleClear"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <button
                 type="button"
                 class="modal-search__close"
                 aria-label="Закрыть"
                 @click="closeModal"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M18 6L6 18M6 6L18 18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
               </button>
             </div>
@@ -101,7 +96,7 @@ const handleClear = () => {
   flex-direction: column;
   pointer-events: none;
 
-  &[aria-hidden="false"],
+  &[aria-hidden='false'],
   &.modal-search-enter-active,
   &.modal-search-leave-active {
     pointer-events: auto;
@@ -120,13 +115,12 @@ const handleClear = () => {
   z-index: 1;
   width: 100%;
   background-color: $color-white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .modal-search__container {
   max-width: 1187px;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding: 11px 16px;
   width: 100%;
 }
 
@@ -146,24 +140,19 @@ const handleClear = () => {
   color: $color-dark;
   pointer-events: none;
   z-index: 1;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .modal-search__input {
   width: 100%;
-  padding: 16px 48px 16px 40px;
-  font-size: $font-size-18;
+  padding: 10px 48px 10px 40px;
+  font-size: 16px;
   color: $color-dark;
   background: transparent;
   border: none;
-  border-bottom: 2px solid $color-light-gray;
+  border-bottom: 1px solid $color-light-gray;
   outline: none;
-  transition: border-color 0.2s, padding 0.2s;
-
-  &:focus {
-    border-bottom-color: $color-yellow;
-  }
 
   &::placeholder {
     color: $color-light-gray-text;
@@ -186,13 +175,6 @@ const handleClear = () => {
   border: none;
   cursor: pointer;
   color: $color-dark;
-  transition: color 0.2s, background-color 0.2s;
-  border-radius: 8px;
-
-  &:hover {
-    color: $color-yellow;
-    background-color: $color-light-gray;
-  }
 }
 
 .modal-search__close {
@@ -207,13 +189,6 @@ const handleClear = () => {
   border: none;
   cursor: pointer;
   color: $color-dark;
-  transition: color 0.2s, background-color 0.2s;
-  border-radius: 8px;
-
-  &:hover {
-    color: $color-yellow;
-    background-color: $color-light-gray;
-  }
 }
 
 // Transition
@@ -229,7 +204,9 @@ const handleClear = () => {
 
 .modal-search-enter-active .modal-search__box,
 .modal-search-leave-active .modal-search__box {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .modal-search-enter-from .modal-search__box,

@@ -6,6 +6,8 @@ import WhatsappIcon from '../icons/WhatsappIcon.vue'
 import ProfileIcon from '../icons/ProfileIcon.vue'
 import CartIcon from '../icons/CartIcon.vue'
 import SearchIcon from '../icons/SearchIcon.vue'
+import MaxIcon from '../icons/MaxIcon.vue'
+import TelegramIcon from '../icons/TelegramIcon.vue'
 
 const emit = defineEmits<{
   authClick: []
@@ -34,6 +36,16 @@ const emit = defineEmits<{
           <li class="header__phone-item">
             <a href="#" class="header__social-link">
               <WhatsappIcon />
+            </a>
+          </li>
+          <li class="header__phone-item">
+            <a href="#" class="header__social-link">
+              <MaxIcon />
+            </a>
+          </li>
+          <li class="header__phone-item">
+            <a href="#" class="header__social-link">
+              <TelegramIcon />
             </a>
           </li>
         </ul>
@@ -78,7 +90,7 @@ const emit = defineEmits<{
             <RouterLink to="/about" class="header__nav-link">О компании</RouterLink>
           </li>
           <li class="header__nav-item">
-            <RouterLink to="/about" class="header__nav-link">Контакты</RouterLink>
+            <RouterLink to="/contacts" class="header__nav-link">Контакты</RouterLink>
           </li>
         </ul>
         <button

@@ -54,6 +54,7 @@ const {
     width: 100%;
     height: auto;
     object-fit: cover;
+    max-width: 400px;
   }
 
   &__content {

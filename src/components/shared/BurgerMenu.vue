@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
+import { RouterLink } from 'vue-router'
 
 defineProps<{
-  open: boolean;
-}>();
+  open: boolean
+}>()
 
 const emit = defineEmits<{
-  close: [];
-}>();
+  close: []
+}>()
 
 const menuItems = [
   { title: 'Каталоги', to: '/catalog' },
@@ -18,10 +18,10 @@ const menuItems = [
   { title: 'Марки машин', to: '/catalog' },
   { title: 'Экспресс-доставка', to: '/delivery' },
   { title: 'О компании', to: '/about' },
-  { title: 'Контакты', to: '/about' },
-];
+  { title: 'Контакты', to: '/contacts' },
+]
 
-const closeMenu = () => emit('close');
+const closeMenu = () => emit('close')
 </script>
 
 <template>
@@ -35,11 +35,7 @@ const closeMenu = () => emit('close');
         :aria-hidden="!open"
         aria-label="Меню"
       >
-        <div
-          class="burger-menu__overlay"
-          aria-hidden="true"
-          @click="closeMenu"
-        />
+        <div class="burger-menu__overlay" aria-hidden="true" @click="closeMenu" />
         <aside class="burger-menu__panel">
           <div class="burger-menu__header">
             <span class="burger-menu__title">Меню</span>
@@ -49,23 +45,27 @@ const closeMenu = () => emit('close');
               aria-label="Закрыть меню"
               @click="closeMenu"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M18 6L6 18M6 6L18 18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
             </button>
           </div>
           <nav class="burger-menu__nav">
             <ul class="burger-menu__list">
-              <li
-                v-for="item in menuItems"
-                :key="item.title"
-                class="burger-menu__item"
-              >
-                <RouterLink
-                  :to="item.to"
-                  class="burger-menu__link"
-                  @click="closeMenu"
-                >
+              <li v-for="item in menuItems" :key="item.title" class="burger-menu__item">
+                <RouterLink :to="item.to" class="burger-menu__link" @click="closeMenu">
                   {{ item.title }}
                 </RouterLink>
               </li>
@@ -78,7 +78,6 @@ const closeMenu = () => emit('close');
 </template>
 
 <style scoped lang="scss">
-
 .burger-menu {
   position: fixed;
   inset: 0;
@@ -86,7 +85,7 @@ const closeMenu = () => emit('close');
   display: flex;
   pointer-events: none;
 
-  &[aria-hidden="false"],
+  &[aria-hidden='false'],
   &.burger-enter-active,
   &.burger-leave-active {
     pointer-events: auto;
@@ -133,7 +132,9 @@ const closeMenu = () => emit('close');
   border: none;
   cursor: pointer;
   color: $color-dark;
-  transition: color 0.2s, background-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
   border-radius: 8px;
 
   &:hover {
@@ -167,7 +168,9 @@ const closeMenu = () => emit('close');
   font-weight: 500;
   color: $color-dark;
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 
   &:hover {
     background-color: $color-light-gray;

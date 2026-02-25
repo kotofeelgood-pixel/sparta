@@ -96,7 +96,7 @@ const isNotMT = computed(() => {
         </div>
       </div>
     </div>
-    <div class="footer__copyright">© ООО Спарт. Все права защищены. 2025</div>
+    <div class="footer__copyright">© ООО Спарт. Все права защищены. 2016</div>
   </footer>
 </template>
 
@@ -108,6 +108,7 @@ const isNotMT = computed(() => {
   background-repeat: no-repeat;
   color: $color-white;
   padding: $m-sec 0;
+  margin-top: $m-sec;
 
   &.mt {
     margin-top: 0;

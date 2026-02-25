@@ -49,7 +49,7 @@ import BlockImgSection from './sections/blockimg-section/BlockImgSection.vue'
   min-height: calc(100vh - 200px);
 
   &__section {
-    padding-bottom: 48px;
+    padding-bottom: 32px;
   }
 }
 </style>
