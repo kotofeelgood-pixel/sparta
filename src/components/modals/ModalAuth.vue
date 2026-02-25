@@ -1,37 +1,37 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
-import ProfileIcon from '@/components/icons/ProfileIcon.vue';
-import KeyIcon from '@/components/icons/KeyIcon.vue';
-import { useNotify } from '@/composables/useNotify';
-import { validateAuth } from '@/utils/validation';
+import { ref } from 'vue'
+import { RouterLink } from 'vue-router'
+import ProfileIcon from '@/components/icons/ProfileIcon.vue'
+import KeyIcon from '@/components/icons/KeyIcon.vue'
+import { useNotify } from '@/composables/useNotify'
+import { validateAuth } from '@/utils/validation'
 
 defineProps<{
-  open: boolean;
-}>();
+  open: boolean
+}>()
 
 const emit = defineEmits<{
-  close: [];
-}>();
+  close: []
+}>()
 
-const { notify } = useNotify();
-const login = ref('');
-const password = ref('');
-const showPassword = ref(false);
-const errors = ref({ login: false, password: false });
+const { notify } = useNotify()
+const login = ref('')
+const password = ref('')
+const showPassword = ref(false)
+const errors = ref({ login: false, password: false })
 
-const closeModal = () => emit('close');
+const closeModal = () => emit('close')
 
 const handleSubmit = () => {
-  const result = validateAuth(login.value, password.value);
-  errors.value = result.errors;
+  const result = validateAuth(login.value, password.value)
+  errors.value = result.errors
   if (!result.valid) {
-    notify({ type: 'error', text: result.message });
-    return;
+    notify({ type: 'error', text: result.message })
+    return
   }
   // TODO: auth API
-  closeModal();
-};
+  closeModal()
+}
 </script>
 
 <template>
@@ -45,30 +45,36 @@ const handleSubmit = () => {
         aria-labelledby="modal-auth-title"
         :aria-hidden="!open"
       >
-        <div
-          class="modal-auth__overlay"
-          aria-hidden="true"
-          @click="closeModal"
-        />
+        <div class="modal-auth__overlay" aria-hidden="true" @click="closeModal" />
         <div class="modal-auth__box">
           <header class="modal-auth__header">
-            <h2 id="modal-auth-title" class="modal-auth__title">
-              ВХОД В ЛИЧНЫЙ КАБИНЕТ
-            </h2>
+            <h2 id="modal-auth-title" class="modal-auth__title">ВХОД В ЛИЧНЫЙ КАБИНЕТ</h2>
             <button
               type="button"
               class="modal-auth__close"
               aria-label="Закрыть"
               @click="closeModal"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M18 6L6 18M6 6L18 18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
             </button>
           </header>
           <div class="modal-auth__body">
             <p class="modal-auth__hint">
-              Заполните поля ниже и нажмите кнопку «Войти»
+              Для регистрации обратитесь по номеру: <a href="#">89660320230</a>
             </p>
             <form class="modal-auth__form" @submit.prevent="handleSubmit">
               <div class="modal-auth__field" :class="{ 'modal-auth__field--error': errors.login }">
@@ -84,7 +90,10 @@ const handleSubmit = () => {
                   @input="errors.login = false"
                 />
               </div>
-              <div class="modal-auth__field" :class="{ 'modal-auth__field--error': errors.password }">
+              <div
+                class="modal-auth__field"
+                :class="{ 'modal-auth__field--error': errors.password }"
+              >
                 <span class="modal-auth__icon modal-auth__icon--accent">
                   <KeyIcon />
                 </span>
@@ -102,13 +111,33 @@ const handleSubmit = () => {
                   :aria-label="showPassword ? 'Скрыть пароль' : 'Показать пароль'"
                   @click="showPassword = !showPassword"
                 >
-                  <svg v-if="!showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
+                  <svg
+                    v-if="!showPassword"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
                   </svg>
-                  <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
-                    <line x1="1" y1="1" x2="23" y2="23"/>
+                  <svg
+                    v-else
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+                    />
+                    <line x1="1" y1="1" x2="23" y2="23" />
                   </svg>
                 </button>
               </div>
@@ -118,9 +147,7 @@ const handleSubmit = () => {
                   Пользовательского соглашения
                 </RouterLink>
               </p>
-              <button type="submit" class="modal-auth__submit">
-                Войти
-              </button>
+              <button type="submit" class="modal-auth__submit">Войти</button>
             </form>
           </div>
         </div>
@@ -140,7 +167,7 @@ const handleSubmit = () => {
   padding: 20px;
   pointer-events: none;
 
-  &[aria-hidden="false"],
+  &[aria-hidden='false'],
   &.modal-enter-active,
   &.modal-leave-active {
     pointer-events: auto;
@@ -170,6 +197,7 @@ const handleSubmit = () => {
   padding: 20px 24px;
   background-color: $color-white;
   border-bottom: 1px solid $color-light-gray;
+  position: relative;
 }
 
 .modal-auth__title {
@@ -184,7 +212,8 @@ const handleSubmit = () => {
 .modal-auth__close {
   @include flex-center;
   position: absolute;
-  top: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 24px;
   width: 40px;
   height: 40px;
@@ -192,13 +221,6 @@ const handleSubmit = () => {
   border: none;
   cursor: pointer;
   color: $color-dark;
-  transition: color 0.2s, background-color 0.2s;
-  border-radius: 8px;
-
-  &:hover {
-    color: $color-yellow;
-    background-color: $color-light-gray;
-  }
 }
 
 .modal-auth__body {
@@ -212,6 +234,15 @@ const handleSubmit = () => {
   color: $color-dark;
   text-align: center;
   line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+
+  a {
+    text-decoration: none;
+    color: $color-yellow-light;
+    font-size: 16px;
+    font-weight: 600;
+  }
 }
 
 .modal-auth__form {
@@ -276,7 +307,9 @@ const handleSubmit = () => {
   cursor: pointer;
   color: $color-dark;
   border-radius: 6px;
-  transition: color 0.2s, background-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
 
   &:hover {
     color: $color-yellow;
@@ -313,7 +346,9 @@ const handleSubmit = () => {
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: opacity 0.2s, background-color 0.2s;
+  transition:
+    opacity 0.2s,
+    background-color 0.2s;
 
   &:hover {
     opacity: 0.95;
@@ -334,7 +369,9 @@ const handleSubmit = () => {
 
 .modal-enter-active .modal-auth__box,
 .modal-leave-active .modal-auth__box {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .modal-enter-from .modal-auth__box,
