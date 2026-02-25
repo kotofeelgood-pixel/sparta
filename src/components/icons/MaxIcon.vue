@@ -8,5 +8,10 @@
 .max-icon {
   width: 26px;
   height: 26px;
+
+  @include bp($point_4) {
+    width: 16px;
+    height: 16px;
+  }
 }
 </style>

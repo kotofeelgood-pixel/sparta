@@ -322,4 +322,11 @@ const isNotMT = computed(() => {
     font-weight: 300;
   }
 }
+
+:deep(.max-icon) {
+  @include bp($point_4) {
+    width: 24px;
+    height: 24px;
+  }
+}
 </style>
