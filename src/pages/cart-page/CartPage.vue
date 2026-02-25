@@ -45,7 +45,7 @@ const removeItem = (id: string) => {
 
 <template>
   <div class="cart-page">
-    <div class="cart-page__container">
+    <div class="cart-page__container container">
       <div class="cart-page__content">
         <!-- Основной контент -->
         <div class="cart-page__main">
@@ -106,7 +106,7 @@ const removeItem = (id: string) => {
             </div>
             <ButtonComponent
               text="Отправить заявку"
-              size="large"
+              size="small"
               variant="primary"
               custom-class="cart-page__submit-button"
               @click="isModalOpen = true"
@@ -133,16 +133,13 @@ const removeItem = (id: string) => {
   min-height: calc(100vh - 200px);
 
   &__container {
-    max-width: 1187px;
-    margin: 0 auto;
-    padding: 0 16px;
-    padding-bottom: 96px;
+    margin-bottom: $m-sec;
   }
 
   &__content {
     display: flex;
     padding-top: 20px;
-    align-items: flex-end;
+    align-items: stretch;
 
     @include bp($point_2) {
       flex-direction: column;
@@ -188,8 +185,8 @@ const removeItem = (id: string) => {
   }
 
   &__header-text {
-    font-size: $font-size-20;
-    line-height: $line-height-20;
+    font-size: 16px;
+    line-height: 160%;
     font-weight: 400;
     color: $color-gray;
   }
@@ -213,7 +210,8 @@ const removeItem = (id: string) => {
     background-color: $color-dark;
     border-radius: 0 10px 10px 0;
     padding: 32px;
-    height: 273px;
+    // height: 273px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -230,11 +228,12 @@ const removeItem = (id: string) => {
     gap: 8px;
     align-items: center;
     justify-content: center;
+    margin-bottom: 16px;
   }
 
   &__total-label {
-    font-size: $font-size-30;
-    line-height: $line-height-30;
+    font-size: 22px;
+    line-height: 140%;
     font-weight: 300;
     color: $color-white;
 
@@ -244,8 +243,8 @@ const removeItem = (id: string) => {
   }
 
   &__total-value {
-    font-size: $font-size-30;
-    line-height: $line-height-30;
+    font-size: 22px;
+    line-height: 140%;
     font-weight: 600;
     color: $color-white;
 
@@ -257,7 +256,9 @@ const removeItem = (id: string) => {
   &__submit-button {
     width: 100%;
     text-transform: none;
-    height: 63px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
   }
 }
 </style>

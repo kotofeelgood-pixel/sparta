@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import ServicesSection from './sections/services-section/ServicesSection.vue';
-import BlockImgSection from './sections/blockimg-section/BlockImgSection.vue';
-import ContactSection from './sections/contacts-section/ContactSection.vue';
+import ServicesSection from './sections/services-section/ServicesSection.vue'
+import BlockImgSection from './sections/blockimg-section/BlockImgSection.vue'
+// import ContactSection from './sections/contacts-section/ContactSection.vue'
 </script>
 
 <template>
   <div class="about-page">
     <!-- Секция "О компании" (верхняя) -->
     <section class="about-page__section">
-      <div class="about-page__container">
+      <div class="about-page__container container">
         <BlockImgSection
           image="/images/excavator.png"
           content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
@@ -19,14 +19,14 @@ import ContactSection from './sections/contacts-section/ContactSection.vue';
 
     <!-- Секция преимуществ -->
     <section class="about-page__section">
-      <div class="about-page__container">
+      <div class="about-page__container container">
         <ServicesSection />
       </div>
     </section>
 
     <!-- Секция "О компании" (нижняя) -->
     <section class="about-page__section">
-      <div class="about-page__container">
+      <div class="about-page__container container">
         <BlockImgSection
           image="/images/bulldozer.png"
           content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
@@ -36,11 +36,11 @@ import ContactSection from './sections/contacts-section/ContactSection.vue';
     </section>
 
     <!-- Секция контактов -->
-    <section class="about-page__section about-page__section--contacts">
+    <!-- <section class="about-page__section about-page__section--contacts">
       <div class="about-page__container">
         <ContactSection />
       </div>
-    </section>
+    </section> -->
   </div>
 </template>
 
@@ -50,17 +50,6 @@ import ContactSection from './sections/contacts-section/ContactSection.vue';
 
   &__section {
     padding-bottom: 48px;
-
-    &--contacts {
-      padding-bottom: 112px;
-    }
-  }
-
-  &__container {
-    max-width: 1187px;
-    margin: 0 auto;
-    padding: 0 16px;
   }
 }
 </style>
-

@@ -122,6 +122,13 @@ export const mainRoutes = [
     },
   },
   {
+    path: '/contacts',
+    component: () => import('@/pages/contacts-page/ContactsPage.vue'),
+    meta: {
+      layout: 'default',
+    },
+  },
+  {
     path: '/catalog',
     name: 'catalog',
     component: () => import('@/pages/catalog-page/CatalogPage.vue'),

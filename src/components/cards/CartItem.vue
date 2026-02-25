@@ -72,24 +72,24 @@ const total = computed(() => props.price * props.quantity)
 <style scoped lang="scss">
 .cart-item {
   background-color: $color-white;
-  height: 136px;
+  // height: 136px;
   display: flex;
   align-items: center;
-  padding: 0 32px;
+  padding: 16px;
   position: relative;
   flex-grow: 1;
 
   &__content {
     display: flex;
-    align-items: center;
+    align-items: FLEX;
     gap: 24px;
     flex-grow: 1;
     min-width: 230px;
   }
 
   &__image-wrapper {
-    width: 82px;
-    height: 82px;
+    width: 60px;
+    height: 60px;
     border-radius: 10px;
     overflow: hidden;
     flex-shrink: 0;
@@ -101,13 +101,13 @@ const total = computed(() => props.price * props.quantity)
   }
 
   &__title {
-    font-size: $font-size-18;
-    line-height: $line-height-18;
+    font-size: 16px;
+    line-height: 160%;
     font-weight: 400;
     color: $color-dark;
-    line-height: 26px;
+    line-height: 160%;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -127,11 +127,10 @@ const total = computed(() => props.price * props.quantity)
 
   &__price,
   &__total {
-    font-size: $font-size-20;
-    line-height: $line-height-20;
+    font-size: 16px;
+    line-height: 160%;
     font-weight: 700;
     color: $color-dark;
-    line-height: 30px;
   }
 
   &__remove-button {

@@ -21,7 +21,16 @@ const isCallbackOpen = ref(false);
 const isOrderOpen = ref(false);
 const isSearchOpen = ref(false);
 
-provide('openOrderModal', () => {
+type OrderProductPayload = {
+  image?: string;
+  title?: string;
+  subtitle?: string;
+};
+
+const orderProduct = ref<OrderProductPayload | null>(null);
+
+provide<(payload?: OrderProductPayload) => void>('openOrderModal', (payload) => {
+  orderProduct.value = payload ?? null;
   isOrderOpen.value = true;
 });
 </script>
@@ -54,6 +63,9 @@ provide('openOrderModal', () => {
     />
     <ModalOrder
       :open="isOrderOpen"
+      :product-image="orderProduct?.image"
+      :product-title="orderProduct?.title"
+      :product-subtitle="orderProduct?.subtitle"
       @close="isOrderOpen = false"
     />
     <ModalSearch

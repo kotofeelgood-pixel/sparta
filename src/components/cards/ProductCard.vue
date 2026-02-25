@@ -1,21 +1,27 @@
 <script setup lang="ts">
-import { inject } from 'vue';
-import { RouterLink, useRouter } from 'vue-router';
-import CheckFillIcon from '../icons/CheckFillIcon.vue';
-import ButtonComponent from '../ui/ButtonComponent.vue';
-import CardDecoratorIcon from '../icons/CardDecoratorIcon.vue';
+import { inject } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
+import CheckFillIcon from '../icons/CheckFillIcon.vue'
+import ButtonComponent from '../ui/ButtonComponent.vue'
+import CardDecoratorIcon from '../icons/CardDecoratorIcon.vue'
 
-const openOrderModal = inject<() => void>('openOrderModal', () => {});
+type OrderProductPayload = {
+  image?: string
+  title?: string
+  subtitle?: string
+}
+
+const openOrderModal = inject<(payload?: OrderProductPayload) => void>('openOrderModal', () => {})
 
 export interface Manufacturer {
-  name: string;
-  slug: string;
+  name: string
+  slug: string
   id: string
 }
 
 export interface ProductCardModel {
-  image: string;
-  title: string;
+  image: string
+  title: string
   id: string
   slug: string
   manufacturers: Manufacturer[]
@@ -23,15 +29,19 @@ export interface ProductCardModel {
   price: string
 }
 
-const props = defineProps<ProductCardModel & { to?: string }>();
-const { image, title, manufacturers, instock, price, to } = props;
-const router = useRouter();
+const props = defineProps<ProductCardModel & { to?: string }>()
+const { image, title, manufacturers, instock, price, to } = props
+const router = useRouter()
 
 const goToProduct = () => {
-  if (to) router.push(to);
-};
+  if (to) router.push(to)
+}
 
-const onLinkClick = (e: MouseEvent) => e.stopPropagation();
+const onLinkClick = (e: MouseEvent) => e.stopPropagation()
+
+const onOrderClick = () => {
+  openOrderModal()
+}
 </script>
 
 <template>
@@ -44,16 +54,16 @@ const onLinkClick = (e: MouseEvent) => e.stopPropagation();
     @keydown.enter="goToProduct"
     @keydown.space.prevent="goToProduct"
   >
-    <CardDecoratorIcon class="product-card__decorator"/>
+    <CardDecoratorIcon class="product-card__decorator" />
 
     <!-- Изображение -->
     <div class="product-card__image-wrapper">
-      <img :src="image" :alt="title" class="product-card__image">
+      <img :src="image" :alt="title" class="product-card__image" />
     </div>
 
     <div class="product-card__instock">
       <div class="product-card__instock-icon">
-        <CheckFillIcon/>
+        <CheckFillIcon />
       </div>
       <span class="product-card__instock-text">{{ instock }}</span>
     </div>
@@ -81,7 +91,7 @@ const onLinkClick = (e: MouseEvent) => e.stopPropagation();
     </div>
 
     <!-- Кнопка заказа -->
-    <div class="product-card__button-wrap" @click.stop="openOrderModal">
+    <div class="product-card__button-wrap" @click.stop="onOrderClick">
       <ButtonComponent
         text="Заказать"
         size="small"
@@ -101,15 +111,9 @@ const onLinkClick = (e: MouseEvent) => e.stopPropagation();
   height: 100%;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s, box-shadow 0.2s;
 
   &--clickable {
     cursor: pointer;
-  }
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15), 0px 4px 44px rgba(37, 37, 37, 0.1) inset;
   }
 
   &__decorator {
@@ -153,14 +157,14 @@ const onLinkClick = (e: MouseEvent) => e.stopPropagation();
   }
 
   &__title {
-    font-size: $font-size-18;
-    line-height: $line-height-18;
+    font-size: 16px;
+    line-height: 160%;
     font-weight: 400;
     color: $color-gray;
     margin-bottom: 6px;
     flex: 1;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -170,15 +174,15 @@ const onLinkClick = (e: MouseEvent) => e.stopPropagation();
   }
 
   &__manufacturer-label {
-    font-size: $font-size-16;
-    line-height: $line-height-16;
+    font-size: 14px;
+    line-height: 160%;
     font-weight: 400;
     color: $color-light-gray-text;
   }
 
   &__manufacturer-link {
-    font-size: $font-size-16;
-    line-height: $line-height-16;
+    font-size: 14px;
+    line-height: 160%;
     font-weight: 600;
     color: $color-yellow;
     text-decoration: none;

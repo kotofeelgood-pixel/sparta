@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import CheckFillIcon from '@/components/icons/CheckFillIcon.vue';
-import BlockForm from '@/components/shared/BlockForm.vue';
-
+import { inject } from 'vue'
+import CheckFillIcon from '@/components/icons/CheckFillIcon.vue'
+import BlockForm from '@/components/shared/BlockForm.vue'
 
 const product = {
   id: '1',
@@ -15,19 +15,49 @@ const product = {
     { label: 'Применение', value: 'Спецтехника' },
     { label: 'Тип', value: 'ТНВД' },
     { label: 'Модель', value: '12 12 04 00 000' },
-    { label: 'Номер по каталогу', value: '1262598455', link: 'https://www.google.com', target: '_blank' },
+    {
+      label: 'Номер по каталогу',
+      value: '1262598455',
+      link: 'https://www.google.com',
+      target: '_blank',
+    },
   ],
-  description: 'Топливный насос высокого давления (ТНВД) предназначен для подачи топлива в цилиндры дизельного двигателя под высоким давлением. Данная модель обеспечивает стабильную работу двигателя и оптимальный расход топлива. Изготовлен из высококачественных материалов с соблюдением всех технических требований.',
-};
+  description:
+    'Топливный насос высокого давления (ТНВД) предназначен для подачи топлива в цилиндры дизельного двигателя под высоким давлением. Данная модель обеспечивает стабильную работу двигателя и оптимальный расход топлива. Изготовлен из высококачественных материалов с соблюдением всех технических требований.',
+}
+
+type OrderProductPayload = {
+  image?: string
+  title?: string
+  subtitle?: string
+}
+
+const openOrderModal = inject<(payload?: OrderProductPayload) => void>('openOrderModal', () => {})
+
+const handleOpenOrderClick = () => {
+  const manufacturer = product.characteristics.find(
+    (characteristic) => characteristic.label === 'Производитель',
+  )?.value
+
+  openOrderModal({
+    image: product.image,
+    title: product.title,
+    subtitle: manufacturer,
+  })
+}
+
+const handleAddToCartClick = () => {
+  // TODO: реализовать добавление товара в корзину
+}
 </script>
 
 <template>
   <div class="product-page">
-    <div class="product-page__container">
+    <div class="product-page__container container">
       <div class="product-page__content">
         <!-- Левая часть: Изображение -->
         <div class="product-page__image-wrapper">
-          <img :src="product.image" :alt="product.title" class="product-page__image">
+          <img :src="product.image" :alt="product.title" class="product-page__image" />
         </div>
 
         <!-- Правая часть: Информация -->
@@ -38,18 +68,22 @@ const product = {
           <!-- Статус наличия -->
           <div class="product-page__instock">
             <div class="product-page__instock-icon">
-              <CheckFillIcon/>
+              <CheckFillIcon />
             </div>
             <span class="product-page__instock-text">{{ product.instock }}</span>
           </div>
 
           <ul class="product-page__characteristics">
-            <li v-for="characteristic in product.characteristics" :key="characteristic.label" class="product-page__characteristic">
+            <li
+              v-for="characteristic in product.characteristics"
+              :key="characteristic.label"
+              class="product-page__characteristic"
+            >
               <span class="product-page__characteristic-label">{{ characteristic.label }}:</span>
               <component
                 :class="[
                   'product-page__characteristic-value',
-                  characteristic.link ? 'product-page__characteristic-value--link' : ''
+                  characteristic.link ? 'product-page__characteristic-value--link' : '',
                 ]"
                 :is="characteristic.link ? 'a' : 'span'"
                 :href="characteristic.link"
@@ -61,70 +95,51 @@ const product = {
           </ul>
 
           <div class="product-page__description">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+            {{ product.description }}
+          </div>
+
+          <div class="product-page__actions">
+            <button class="product-page__cta-button" type="button" @click="handleOpenOrderClick">
+              Оставить заявку
+            </button>
+            <button class="product-page__cart-button" type="button" @click="handleAddToCartClick">
+              В корзину
+            </button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Секция "Связаться с менеджером" -->
-    <BlockForm
-      image="/images/form-car.png"
-      customClass="!right-0"
-      title="Связаться с менеджером"
-      subtitle="Если у Вас есть сложности с выбором товара или другие вопросы, то Вы можете получить консультацию у наших менеджеров в рабочие часы компании."
-      theme="white"
-    />
+    <div class="product-page__form-section">
+      <BlockForm
+        image="/images/form-car.png"
+        customClass="!right-0"
+        title="Связаться с менеджером"
+        subtitle="Если у Вас есть сложности с выбором товара или другие вопросы, то Вы можете получить консультацию у наших менеджеров в рабочие часы компании."
+        theme="white"
+      />
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-
 .product-page {
   min-height: calc(100vh - 200px);
   padding-top: 16px;
 
-  @media (min-width: 768px) {
-    padding-top: 20px;
-  }
-
-  @media (min-width: 1024px) {
-    padding-top: 24px;
-    min-height: calc(100vh - 200px);
-  }
-
   &__container {
-    max-width: 1187px;
-    margin: 0 auto;
-    padding: 0 12px;
-    padding-bottom: 48px;
-
-    @media (min-width: 480px) {
-      padding: 0 16px;
-      padding-bottom: 56px;
-    }
-
-    @media (min-width: 768px) {
-      padding-bottom: 64px;
-    }
-
-    @media (min-width: 1024px) {
-      padding-bottom: 96px;
-    }
+    margin-bottom: $m-sec;
   }
 
   &__content {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-
-    @media (min-width: 768px) {
-      gap: 24px;
-    }
+    align-items: flex-start;
 
     @media (min-width: 1024px) {
       grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
     }
   }
 
@@ -138,10 +153,10 @@ const product = {
     border-radius: 10px;
     padding: 16px;
 
-    @media (min-width: 768px) {
-      min-height: 280px;
-      padding: 24px;
-    }
+    // @media (min-width: 768px) {
+    //   min-height: 280px;
+    //   padding: 24px;
+    // }
 
     @media (min-width: 1024px) {
       min-height: auto;
@@ -190,18 +205,13 @@ const product = {
   }
 
   &__title {
-    font-size: $font-size-25;
-    line-height: 1.2;
+    font-size: 22px;
+    line-height: 140%;
     font-family: $font-family-bebas;
     text-transform: uppercase;
     color: $color-gray;
     margin-bottom: 6px;
     word-break: break-word;
-
-    @media (min-width: 768px) {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
 
     @media (min-width: 1024px) {
       font-size: $font-size-35;
@@ -217,9 +227,9 @@ const product = {
     color: $color-gray;
     margin-bottom: 8px;
 
-    @media (min-width: 768px) {
-      font-size: 28px;
-    }
+    // @media (min-width: 768px) {
+    //   font-size: 28px;
+    // }
 
     @media (min-width: 1024px) {
       font-size: $font-size-30;
@@ -320,10 +330,82 @@ const product = {
     color: $color-gray;
 
     @media (min-width: 768px) {
+      font-size: 16px;
+      line-height: 160%;
+    }
+  }
+
+  &__actions {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  &__cta-button {
+    padding: 10px 24px;
+    border-radius: 999px;
+    border: none;
+    background-color: $color-yellow;
+    color: $color-gray;
+    font-weight: 600;
+    font-size: $font-size-14;
+    line-height: $line-height-14;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      transform 0.1s ease;
+
+    @media (min-width: 768px) {
       font-size: $font-size-18;
       line-height: $line-height-18;
+      padding: 12px 32px;
     }
+
+    &:hover {
+      background-color: darken($color-yellow, 5%);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &__cart-button {
+    padding: 10px 24px;
+    border-radius: 999px;
+    border: 1px solid $color-yellow;
+    background-color: $color-white;
+    color: $color-gray;
+    font-weight: 600;
+    font-size: $font-size-14;
+    line-height: $line-height-14;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.1s ease;
+
+    @media (min-width: 768px) {
+      font-size: $font-size-18;
+      line-height: $line-height-18;
+      padding: 12px 32px;
+    }
+
+    &:hover {
+      background-color: $color-yellow;
+      color: $color-gray;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &__form-section {
+    margin-top: $m-sec;
   }
 }
 </style>
-

@@ -7,6 +7,9 @@ import { validateCallback } from '@/utils/validation';
 
 defineProps<{
   open: boolean;
+  productImage?: string;
+  productTitle?: string;
+  productSubtitle?: string;
 }>();
 
 const emit = defineEmits<{
@@ -65,6 +68,27 @@ const handleSubmit = () => {
             </button>
           </header>
           <div class="modal-order__body">
+            <div
+              v-if="productImage || productTitle || productSubtitle"
+              class="modal-order__product"
+            >
+              <div v-if="productImage" class="modal-order__product-image-wrap">
+                <img
+                  :src="productImage"
+                  :alt="productTitle || 'Товар из каталога'"
+                  class="modal-order__product-image"
+                />
+              </div>
+              <div class="modal-order__product-info">
+                <p v-if="productTitle" class="modal-order__product-title">
+                  {{ productTitle }}
+                </p>
+                <p v-if="productSubtitle" class="modal-order__product-subtitle">
+                  {{ productSubtitle }}
+                </p>
+              </div>
+            </div>
+
             <p class="modal-order__hint">
               Оставьте контакты, и мы оформим заказ
             </p>
@@ -180,6 +204,51 @@ const handleSubmit = () => {
 
 .modal-order__body {
   padding: 24px;
+}
+
+.modal-order__product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.modal-order__product-image-wrap {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: $color-light-gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-order__product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.modal-order__product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal-order__product-title {
+  margin: 0;
+  font-size: $font-size-16;
+  font-weight: 600;
+  color: $color-dark;
+}
+
+.modal-order__product-subtitle {
+  margin: 0;
+  font-size: $font-size-14;
+  font-weight: 400;
+  color: $color-light-gray-text;
 }
 
 .modal-order__hint {
