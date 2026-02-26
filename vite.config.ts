@@ -26,7 +26,22 @@ export default defineConfig({
       },
     },
   },
-
+  build: {
+    cssCodeSplit: false,
+    rollupOptions: {
+      input: fileURLToPath(new URL('./src/main.ts', import.meta.url)),
+      output: {
+        inlineDynamicImports: true,
+        entryFileNames: 'assets/index.js',
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+            return 'assets/style.css'
+          }
+          return 'assets/[name][extname]'
+        },
+      },
+    },
+  },
   server: {
     port: 3000,
     open: true,
