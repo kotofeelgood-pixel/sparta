@@ -21,6 +21,10 @@ const breakpoints = {
     spaceBetween: 40,
   },
 }
+
+defineProps<{
+  brands: any[]
+}>()
 </script>
 
 <template>
@@ -51,9 +55,14 @@ const breakpoints = {
             prevEl: '.brand-slider-navigation-prev',
           }"
         >
-          <SwiperSlide v-for="brand in 6" :key="brand">
+          <SwiperSlide v-for="brand in brands" :key="brand.id">
             <div class="brand-slider__item">
-              <img :src="`/images/brand-${brand + 1}.png`" alt="" class="brand-slider__image" />
+              <img
+                v-if="brand.thumbnail && brand.thumbnail.url"
+                :src="brand.thumbnail.url"
+                :alt="brand.name"
+                class="brand-slider__image"
+              />
             </div>
           </SwiperSlide>
         </Swiper>
@@ -141,7 +150,8 @@ const breakpoints = {
 
   &__image {
     display: block;
-    height: 100%;
+    height: 100px;
+    width: 100%;
     object-fit: contain;
   }
 }

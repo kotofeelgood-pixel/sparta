@@ -24,4 +24,18 @@ export const wpPages = {
   },
 }
 
+export const wpBrands = {
+  getList(params?: Record<string, unknown>) {
+    return wpApi.get('/brands', { params })
+  },
+
+  getBySlug(slug: string) {
+    return wpApi.get('/brands', { params: { slug } })
+  },
+
+  getById(id: number) {
+    return wpApi.get(`/brands/${id}`)
+  },
+}
+
 export default wpApi

@@ -148,11 +148,12 @@ const repairs = [
   },
 ]
 
-const { fetchHome } = useHomeStore()
-const { home } = useHomeStoreRefs()
+const { fetchHome, fetchBrands } = useHomeStore()
+const { home, brands } = useHomeStoreRefs()
 
 onMounted(async () => {
   await fetchHome()
+  await fetchBrands()
 })
 </script>
 
@@ -160,7 +161,7 @@ onMounted(async () => {
   <div class="main-page">
     <IntroSlider v-if="home && home.acf" :slides="home.acf.home.hero_slider" />
     <div class="">
-      <BrandSlider />
+      <BrandSlider v-if="brands" :brands="brands" />
     </div>
     <div class="main-page__section">
       <AgregatesSection :agregates="agregates" />
