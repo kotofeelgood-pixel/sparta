@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import 'swiper/css/pagination'
 
-import { toRaw } from 'vue'
+import { toRaw, onMounted } from 'vue'
 import { Navigation, Pagination } from 'swiper/modules'
 import { useMediaStoreRefs } from '@/stores/useMediaStore'
+import { useHomeStore, useHomeStoreRefs } from '@/stores/useHomeStore'
 import ChevronButtonIcon from '@/components/icons/ChevronButtonIcon.vue'
 
 import IntroSlider from './sections/intro-slider/IntroSlider.vue'
@@ -146,11 +147,18 @@ const repairs = [
     title: 'Trade-in',
   },
 ]
+
+const { fetchHome } = useHomeStore()
+const { home } = useHomeStoreRefs()
+
+onMounted(async () => {
+  await fetchHome()
+})
 </script>
 
 <template>
   <div class="main-page">
-    <IntroSlider />
+    <IntroSlider v-if="home && home.acf" :slides="home.acf.home.hero_slider" />
     <div class="">
       <BrandSlider />
     </div>

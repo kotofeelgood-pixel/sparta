@@ -10,6 +10,10 @@ import GarantIcon from '@/components/icons/GarantIcon.vue'
 import ChevronIcon from '@/components/icons/ChevronIcon.vue'
 
 const { isMobile } = useMediaStoreRefs()
+
+defineProps<{
+  slides: any[]
+}>()
 </script>
 
 <template>
@@ -29,44 +33,27 @@ const { isMobile } = useMediaStoreRefs()
         clickable: true,
       }"
     >
-      <SwiperSlide v-for="slide in 3" :key="slide">
+      <SwiperSlide v-for="(item, index) in slides" :key="`slide-${index}`">
         <div class="intro-slider__container">
           <div class="intro-slider__item">
             <div class="intro-slider__content">
-              <h1 class="intro-slider__title">Поставка двигателей для спецтехники</h1>
+              <h1 class="intro-slider__title">{{ item.title }}</h1>
               <ul class="intro-slider__features">
-                <li class="intro-slider__feature">
+                <li
+                  class="intro-slider__feature"
+                  v-for="(feature, index) in item.services"
+                  :key="`feature-${index}`"
+                >
                   <div class="intro-slider__feature-header">
                     <div class="intro-slider__feature-icon">
-                      <SpeedIcon />
+                      <SpeedIcon v-if="feature.icon === 'speed'" />
+                      <ShieldIcon v-if="feature.icon === 'shield'" />
+                      <GarantIcon v-if="feature.icon === 'garant'" />
                     </div>
-                    <h3 class="intro-slider__feature-title">Скорость</h3>
+                    <h3 class="intro-slider__feature-title">{{ feature.title }}</h3>
                   </div>
                   <p class="intro-slider__feature-text">
-                    Мы быстро расцениваем заявки и оперативно доставляем запчасти, чтобы сократить
-                    время простоя техники.
-                  </p>
-                </li>
-                <li class="intro-slider__feature">
-                  <div class="intro-slider__feature-header">
-                    <div class="intro-slider__feature-icon">
-                      <ShieldIcon />
-                    </div>
-                    <h3 class="intro-slider__feature-title">Надежность</h3>
-                  </div>
-                  <p class="intro-slider__feature-text">
-                    Мы не работаем с подделками и сомнительными производителями.
-                  </p>
-                </li>
-                <li class="intro-slider__feature">
-                  <div class="intro-slider__feature-header">
-                    <div class="intro-slider__feature-icon">
-                      <GarantIcon />
-                    </div>
-                    <h3 class="intro-slider__feature-title">Гарантия</h3>
-                  </div>
-                  <p class="intro-slider__feature-text">
-                    Мы всегда честно сообщаем о сроках, стоимости. На все запчасти есть гарантия.
+                    {{ feature.text }}
                   </p>
                 </li>
               </ul>

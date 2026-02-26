@@ -20,6 +20,15 @@ export default defineConfigWithVueTs(
   vueTsConfigs.recommended,
   skipFormatting,
 
+  // Глобально разрешаем использование any в TypeScript
+  {
+    name: 'ts/no-explicit-any-off',
+    files: ['**/*.{ts,tsx,vue}'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+
   // Настройка порядка секций в Vue компонентах
   {
     name: 'vue/block-order',
