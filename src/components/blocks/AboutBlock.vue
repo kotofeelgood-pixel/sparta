@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{
+  about: any
+}>()
+</script>
 
 <template>
   <section class="about-block">
@@ -7,36 +11,21 @@
     <div class="about-block__container container">
       <div class="about-block__content">
         <div class="about-block__text">
-          <h3 class="about-block__title">О компании</h3>
+          <h3 class="about-block__title">{{ about.about_title }}</h3>
           <div class="about-block__description">
-            <p>
-              Gd ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-              laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-              architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-              sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-              voluptatem sequi nesciunt. Neque porro quisquam
-            </p>
-            <p>
-              Kst, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
-              numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-              voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-              suscipit laboriosam, nisi ut aliquid ex ea commodi consequatu
-            </p>
+            <div v-html="about.about_text"></div>
           </div>
         </div>
       </div>
       <div class="about-block__features">
         <ul class="about-block__features-list">
-          <li v-for="i in 3" :key="i" class="about-block__feature-item">
+          <li v-for="(feature, i) in about.about_list" :key="i" class="about-block__feature-item">
             <div class="about-block__feature-content">
               <div class="about-block__feature-image-wrapper">
-                <img :src="`/images/about-${i}.png`" alt="" class="about-block__feature-image" />
+                <img :src="`/images/about-1.png`" alt="" class="about-block__feature-image" />
               </div>
-              <h5 class="about-block__feature-title">Sed ut perspiciatis</h5>
-              <p class="about-block__feature-text">
-                ed ut perspiciatis unde omnis i natus error sit voluptatem accusantium doloremque
-                laudantium, totam rem
-              </p>
+              <h5 class="about-block__feature-title">{{ feature.title }}</h5>
+              <div v-html="feature.text"></div>
             </div>
           </li>
         </ul>

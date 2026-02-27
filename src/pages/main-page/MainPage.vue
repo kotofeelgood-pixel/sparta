@@ -167,10 +167,10 @@ onMounted(async () => {
       <AgregatesSection :agregates="agregates" />
     </div>
     <div class="main-page__section">
-      <AboutBlock />
+      <AboutBlock :about="home.acf.home" v-if="home && home.acf" />
     </div>
     <div class="main-page__section main-page__section--small">
-      <BrandSlider>
+      <BrandSlider :brands="brands" v-if="brands">
         <template #head>
           <div class="main-page__container">
             <SectionHead
