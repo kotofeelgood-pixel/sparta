@@ -1,27 +1,15 @@
 <script setup lang="ts">
 import RepairSection from '../main-page/sections/repair/RepairSection.vue'
 import BlockForm from '@/components/shared/BlockForm.vue'
+import { useRepairStore, useRepairStoreRefs } from '@/stores/useRepairStore'
+import { onMounted } from 'vue'
 
-const repairs = [
-  {
-    id: '1',
-    slug: 'repair-1',
-    image: '/images/repair-1.png',
-    title: 'Ремонт ДВС и КПП',
-  },
-  {
-    id: '2',
-    slug: 'repair-2',
-    image: '/images/repair-2.png',
-    title: 'Ремонт гидравлики',
-  },
-  {
-    id: '3',
-    slug: 'repair-3',
-    image: '/images/repair-3.png',
-    title: 'Trade-in',
-  },
-]
+const { fetchRepair } = useRepairStore()
+const { repairs } = useRepairStoreRefs()
+
+onMounted(async () => {
+  await fetchRepair()
+})
 </script>
 
 <template>

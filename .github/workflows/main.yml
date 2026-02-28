@@ -36,5 +36,5 @@ jobs:
           lftp -c "
           set ssl:verify-certificate no;
           open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
-          mirror -R --delete ./dist /www/spart.pro/wp-content/themes/spart.pro/vue/;
+          mirror -R --delete ./dist /www/http://kotenkxj.beget.tech//wp-content/themes/spart/vue/;
           quit"

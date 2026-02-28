@@ -226,12 +226,11 @@ onMounted(async () => {
         </div>
       </div>
     </section>
-    <div class="main-page__section main-page__section--form">
+    <div class="main-page__section main-page__section--form" v-if="home && home.acf">
       <BlockForm
         image="/images/form-one.png"
-        title="закажите экспресс-доставку"
-        subtitle="Если у Вас есть сложности с выбором товара или другие вопросы, то Вы можете получить консультацию у наших менеджеров
-в рабочие часы компании."
+        :title="home.acf.home.form_title"
+        :subtitle="home.acf.home.form_text"
         theme="dark"
       />
     </div>

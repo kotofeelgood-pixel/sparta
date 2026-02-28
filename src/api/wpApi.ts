@@ -38,4 +38,18 @@ export const wpBrands = {
   },
 }
 
+export const wpRepair = {
+  getList(params?: Record<string, unknown>) {
+    return wpApi.get('/repair', { params })
+  },
+
+  getBySlug(slug: string) {
+    return wpApi.get('/repair', { params: { slug } })
+  },
+
+  getById(id: number) {
+    return wpApi.get(`/repair/${id}`)
+  },
+}
+
 export default wpApi

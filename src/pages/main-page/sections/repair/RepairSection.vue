@@ -30,6 +30,15 @@ const breakpoints = {
     spaceBetween: 40,
   },
 }
+
+const transformRepairs = (repairs: any[]) => {
+  return repairs.map((repair: any) => ({
+    id: repair.id,
+    slug: repair.slug,
+    image: repair.featured_image,
+    title: repair.title.rendered,
+  }))
+}
 </script>
 
 <template>
@@ -54,17 +63,21 @@ const breakpoints = {
           }"
           class="repair-section__swiper"
         >
-          <SwiperSlide v-for="repair in repairs" :key="repair.id" class="repair-section__slide">
-            <DefaultCard v-bind="repair" :to="`/repair/${repair.id}`" />
+          <SwiperSlide
+            v-for="repair in transformRepairs(repairs)"
+            :key="repair.id"
+            class="repair-section__slide"
+          >
+            <DefaultCard v-bind="repair" :to="`/repair/${repair.slug}`" />
           </SwiperSlide>
         </Swiper>
         <div v-else class="repair-section__grid">
           <DefaultCard
-            v-for="repair in repairs"
+            v-for="repair in transformRepairs(repairs)"
             :key="repair.id"
             class="repair-section__grid-item"
             v-bind="repair"
-            :to="`/repair/${repair.id}`"
+            :to="`/repair/${repair.slug}`"
           />
         </div>
         <div v-if="sliderEnabled" class="repair-section__navigation">
