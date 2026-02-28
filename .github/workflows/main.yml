@@ -32,8 +32,8 @@ jobs:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          # Путь от корня FTP до темы. На Beget: kotenkxj.beget.tech или public_html
-          FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH || 'kotenkxj.beget.tech' }}
+          # Путь от корня FTP до сайта. На Beget: kotenkxj.beget.tech/public_html
+          FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH || 'kotenkxj.beget.tech/public_html' }}
         run: |
           lftp -c "
           set ssl:verify-certificate no;
