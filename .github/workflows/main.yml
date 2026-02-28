@@ -40,6 +40,5 @@ jobs:
           set net:timeout 30;
           open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
           cd $FTP_REMOTE_PATH/wp-content/themes/spart;
-          mkdir -p vue/dist;
           mirror -R --delete --verbose ./dist vue/dist;
           quit"
