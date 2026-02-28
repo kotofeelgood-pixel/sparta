@@ -32,13 +32,9 @@ jobs:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          # Путь от корня FTP до сайта. На Beget: kotenkxj.beget.tech/public_html
-          FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH || 'kotenkxj.beget.tech/public_html' }}
         run: |
           lftp -c "
           set ssl:verify-certificate no;
           open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
-          cd $FTP_REMOTE_PATH/wp-content/themes/spart;
-          mkdir -p vue/dist;
-          mirror -R --delete --verbose ./dist vue/dist;
+          mirror -R --delete ./dist kotenkxj.beget.tech/public_html/wp-content/themes/spart/vue/;
           quit"
