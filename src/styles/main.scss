@@ -1,12 +1,7 @@
 // @use './variables' as *;
 // @use './mixins' as *;
 
-@font-face {
-  font-family: 'Bebas Neue';
-  src: url('../fonts/Bebas Neue.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+// Bebas Neue подключается через Google Fonts в index.html
 
 // Базовые стили
 * {
