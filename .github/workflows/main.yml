@@ -37,9 +37,8 @@ jobs:
           lftp -c "
           set ssl:verify-certificate no;
           set ftp:passive-mode on;
-          set ftp:chmod false;
           set net:timeout 120;
           open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
           cd $FTP_REMOTE_PATH/wp-content/themes/spart;
-          mirror -R --delete --exclude '*.ttf' --verbose ./dist vue/dist;
+          mirror -R --delete --verbose ./dist vue/dist;
           quit"
