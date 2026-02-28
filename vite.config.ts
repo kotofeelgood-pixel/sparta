@@ -37,9 +37,7 @@ export default defineConfig({
           if (assetInfo.name && assetInfo.name.endsWith('.css')) {
             return 'assets/style.css'
           }
-          // Убираем пробелы из имён — FTP зависает на файлах с пробелами
-          const safeName = assetInfo.name?.replace(/\s+/g, '-') ?? 'asset'
-          return `assets/${safeName}`
+          return 'assets/[name][extname]'
         },
       },
     },
