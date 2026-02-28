@@ -48,11 +48,15 @@ const linkTo = to ?? `/${slug}/${id}`
 
   &__image-wrapper {
     width: 100%;
+    height: 268px;
+    border-radius: 10px;
+    overflow: hidden;
   }
 
   &__image {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
   }
 

@@ -52,7 +52,7 @@ export const mainRoutes = [
     },
   },
   {
-    path: '/repair/:id',
+    path: '/repair/:slug',
     component: () => import('@/pages/repair-page/RepairDetailPage.vue'),
     meta: {
       layout: 'default',

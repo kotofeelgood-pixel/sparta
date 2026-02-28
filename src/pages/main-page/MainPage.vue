@@ -5,6 +5,7 @@ import { toRaw, onMounted } from 'vue'
 import { Navigation, Pagination } from 'swiper/modules'
 import { useMediaStoreRefs } from '@/stores/useMediaStore'
 import { useHomeStore, useHomeStoreRefs } from '@/stores/useHomeStore'
+import { useRepairStore, useRepairStoreRefs } from '@/stores/useRepairStore'
 import ChevronButtonIcon from '@/components/icons/ChevronButtonIcon.vue'
 
 import IntroSlider from './sections/intro-slider/IntroSlider.vue'
@@ -127,33 +128,16 @@ const categories = [
   },
 ]
 
-const repairs = [
-  {
-    id: '1',
-    slug: 'repair-1',
-    image: '/images/repair-1.png',
-    title: 'Ремонт ДВС и КПП',
-  },
-  {
-    id: '2',
-    slug: 'repair-2',
-    image: '/images/repair-2.png',
-    title: 'Ремонт гидравлики',
-  },
-  {
-    id: '3',
-    slug: 'repair-3',
-    image: '/images/repair-3.png',
-    title: 'Trade-in',
-  },
-]
-
 const { fetchHome, fetchBrands } = useHomeStore()
 const { home, brands } = useHomeStoreRefs()
+
+const { fetchRepair } = useRepairStore()
+const { repairs } = useRepairStoreRefs()
 
 onMounted(async () => {
   await fetchHome()
   await fetchBrands()
+  await fetchRepair()
 })
 </script>
 
@@ -235,7 +219,7 @@ onMounted(async () => {
       />
     </div>
     <div class="main-page__section">
-      <RepairSection :repairs="repairs" />
+      <RepairSection :repairs="repairs.slice(0, 3)" />
     </div>
   </div>
 </template>

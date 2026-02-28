@@ -1,44 +1,49 @@
-# name: Deploy Vue to WordPress
+name: Deploy Vue to WordPress
 
-# on:
-#   push:
-#     branches:
-#       - main # Укажите ветку, на которую нужно настраивать деплой, например, main или master.
+on:
+  push:
+    branches:
+      - main # Укажите ветку, на которую нужно настраивать деплой, например, main или master.
 
-# jobs:
-#   build-and-deploy:
-#     runs-on: ubuntu-latest
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3 
 
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: "20" 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20" 
 
-#       - name: Install dependencies
-#         run: npm install
+      - name: Install dependencies
+        run: npm install
 
-#       - name: Build project
-#         run: npm run build
+      - name: Build project
+        run: npm run build
 
-#       - name: Install lftp
-#         run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
 
-#       - name: Deploy to WordPress
-#         env:
-#           FTP_SERVER: ${{ secrets.FTP_SERVER }}
-#           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-#           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-#           FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH || 'kotenkxj.beget.tech/public_html' }}
-#         run: |
-#           lftp -c "
-#           set ssl:verify-certificate no;
-#           set ftp:passive-mode on;
-#           set net:timeout 120;
-#           open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
-#           cd $FTP_REMOTE_PATH/wp-content/themes/spart;
-#           mirror -R --delete --verbose ./dist vue/dist;
-#           quit"
+      - name: Deploy to WordPress
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH || 'kotenkxj.beget.tech/public_html' }}
+        run: |
+          lftp -c "
+          set ssl:verify-certificate no;
+          set ftp:passive-mode on;
+          set ftp:chmod false;
+          set net:timeout 120;
+          set cmd:verbose true;
+          set xfer:log true;
+          set log:enable true;
+          set log:file /dev/stderr;
+          open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
+          cd $FTP_REMOTE_PATH/wp-content/themes/spart;
+          mirror -R --delete --verbose ./dist vue/dist;
+          quit"

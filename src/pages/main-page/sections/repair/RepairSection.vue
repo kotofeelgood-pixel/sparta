@@ -35,7 +35,7 @@ const transformRepairs = (repairs: any[]) => {
   return repairs.map((repair: any) => ({
     id: repair.id,
     slug: repair.slug,
-    image: repair.featured_image,
+    image: repair.featured_media.source_url,
     title: repair.title.rendered,
   }))
 }

@@ -15,10 +15,10 @@ export const useRepairStore = defineStore('repair', () => {
     }
   }
 
-  const fetchRepairById = async (id: number) => {
+  const fetchRepairBySlug = async (slug: string) => {
     try {
-      const response = await wpRepair.getById(id)
-      repair.value = response.data
+      const response = await wpRepair.getBySlug(slug)
+      repair.value = response.data[0]
     } catch (error) {
       console.error(error)
     }
@@ -28,7 +28,7 @@ export const useRepairStore = defineStore('repair', () => {
     repair,
     repairs,
     fetchRepair,
-    fetchRepairById,
+    fetchRepairBySlug,
   }
 })
 

@@ -1,5 +1,22 @@
 <script setup lang="ts">
 import BlockForm from '@/components/shared/BlockForm.vue'
+import { useRepairStore, useRepairStoreRefs } from '@/stores/useRepairStore'
+import { useRoute } from 'vue-router'
+import { onMounted, watch } from 'vue'
+
+const route = useRoute()
+const { fetchRepairBySlug } = useRepairStore()
+const { repair } = useRepairStoreRefs()
+
+const loadRepair = async () => {
+  const slug = route.params.slug
+  if (typeof slug === 'string') {
+    await fetchRepairBySlug(slug)
+  }
+}
+
+onMounted(loadRepair)
+watch(() => route.params.slug, loadRepair)
 </script>
 
 <template>
@@ -7,22 +24,10 @@ import BlockForm from '@/components/shared/BlockForm.vue'
     <div class="repair-detail-page__container container">
       <div class="repair-detail-page__content">
         <div class="repair-detail-page__image-wrapper">
-          <img src="/images/repair-detail.png" alt="" class="repair-detail-page__image" />
+          <img :src="repair?.featured_media.source_url" alt="" class="repair-detail-page__image" />
         </div>
         <div class="repair-detail-page__text">
-          <p class="repair-detail-page__paragraph">
-            Gd ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-            architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-            sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-            voluptatem sequi nesciunt. Neque porro quisquam
-          </p>
-          <p class="repair-detail-page__paragraph">
-            Kst, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
-            numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-            voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-            suscipit laboriosam, nisi ut aliquid ex ea commodi consequatu
-          </p>
+          <p class="repair-detail-page__paragraph" v-html="repair?.content.rendered" />
         </div>
       </div>
     </div>
