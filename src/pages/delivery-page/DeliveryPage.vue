@@ -1,6 +1,30 @@
 <script setup lang="ts">
+import { onMounted, computed } from 'vue'
 import AirIcon from '@/components/icons/AirIcon.vue'
 import BlockForm from '@/components/shared/BlockForm.vue'
+import { useDeliveryStore, useDeliveryStoreRefs } from '@/stores/useDeliveryStore'
+
+const { fetchDelivery } = useDeliveryStore()
+const { delivery } = useDeliveryStoreRefs()
+
+const cardText = computed(() => {
+  if (!delivery.value?.content?.rendered) return ''
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(delivery.value.content.rendered, 'text/html')
+  const blockquote = doc.querySelector('.wp-block-quote p, blockquote p')
+  return blockquote?.textContent?.trim() ?? ''
+})
+
+const contentWithoutBlockquote = computed(() => {
+  if (!delivery.value?.content?.rendered) return ''
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(delivery.value.content.rendered, 'text/html')
+  const blockquote = doc.querySelector('.wp-block-quote, blockquote')
+  blockquote?.remove()
+  return doc.body.innerHTML.trim()
+})
+
+onMounted(fetchDelivery)
 </script>
 
 <template>
@@ -8,16 +32,15 @@ import BlockForm from '@/components/shared/BlockForm.vue'
     <div class="delivery-page__container container">
       <div class="delivery-page__card">
         <AirIcon class="delivery-page__card-icon" />
-        <p class="delivery-page__card-text">
-          Мы можем отправить авиа до их областного центра за 1-3 дня
+        <p v-if="cardText" class="delivery-page__card-text">
+          {{ cardText }}
         </p>
       </div>
-      <p class="delivery-page__description">
-        st, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam
-        eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad
-        minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-        aliquid ex ea commodi consequatu
-      </p>
+      <div
+        v-if="contentWithoutBlockquote"
+        class="delivery-page__description"
+        v-html="contentWithoutBlockquote"
+      />
     </div>
     <BlockForm
       image="/images/form-one.png"
