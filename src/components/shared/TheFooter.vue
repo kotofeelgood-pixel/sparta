@@ -21,6 +21,8 @@ const isNotMT = computed(() => {
       return true
     case '/cart':
       return true
+    case '/delivery':
+      return true
     default:
       return false
   }
