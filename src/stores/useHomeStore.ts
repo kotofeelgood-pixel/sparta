@@ -8,7 +8,7 @@ export const useHomeStore = defineStore('home', () => {
 
   const fetchHome = async () => {
     try {
-      const response = await wpPages.getById(238295)
+      const response = await wpPages.getById(34)
       home.value = response.data
     } catch (error) {
       console.error(error)

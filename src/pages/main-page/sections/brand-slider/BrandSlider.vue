@@ -58,8 +58,8 @@ defineProps<{
           <SwiperSlide v-for="brand in brands" :key="brand.id">
             <div class="brand-slider__item">
               <img
-                v-if="brand.thumbnail && brand.thumbnail.url"
-                :src="brand.thumbnail.url"
+                v-if="brand.acf.brand_img"
+                :src="brand.acf.brand_img"
                 :alt="brand.name"
                 class="brand-slider__image"
               />
